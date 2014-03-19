@@ -1,0 +1,174 @@
+﻿{
+    "Plan": {
+        "Name": "STRONGLIFTS 5x5",
+        "Description": "Stronglifts 5x5 Program",
+        "Workouts": [
+            {
+			    "Id": 1,
+                "Name": "Workout A",
+                "Description": "1st Workout",
+                "StrengthExerciseList": [
+                    {
+                        "Name": "Squat",
+                        "Description": "desc",
+                        "Order": 1,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Bench Press",
+                        "Description": "desc..",
+                        "Order": 2,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Barbell Row",
+                        "Description": "desc..",
+                        "Order": 3,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+			    "Id": 2,
+                "Name": "Workout B",
+                "Description": "2nd Workout",
+                "StrengthExerciseList": [
+                    {
+                        "Name": "Squat",
+                        "Description": "desc..",
+                        "Order": 1,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Overhead Press",
+                        "Description": "press it",
+                        "Order": 2,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Dead Lift",
+                        "Description": "tough one",
+                        "Order": 3,
+						"RestTime": 120,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "SetType": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

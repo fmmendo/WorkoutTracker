@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="StrongliftsTracker.Controls.ExerciseControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Background="{StaticResource PhoneAccentBrush}" Margin="12" HorizontalAlignment="Stretch">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource TextHeaderStyle}" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+        </Border>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Sets}" Style="{StaticResource ListboxItemsStyle}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5,0,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=NumberOfReps}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text=" reps     "></TextBlock>
+                            <TextBlock Grid.Column="2" Text="{Binding Path=Weight}"></TextBlock>
+                            <TextBlock Grid.Column="3" Text="{Binding Path=DataContext.Unit, ElementName=LayoutRoot}"></TextBlock>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</UserControl>
