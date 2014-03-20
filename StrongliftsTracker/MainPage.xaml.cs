@@ -23,7 +23,7 @@ namespace StrongliftsTracker
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //adRotatorControl.Invalidate();
+            adRotatorControl.Invalidate();
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)

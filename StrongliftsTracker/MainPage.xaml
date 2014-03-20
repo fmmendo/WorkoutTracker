@@ -20,6 +20,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- LOCALIZATION NOTE:
@@ -76,16 +77,17 @@
                 </Button>
                 <!--<Button Click="Measurements_Click">Measurements</Button>-->
             </toolkit:WrapPanel>
+       </Grid>
 
-            <!--<ad:AdRotatorControl x:Name="adRotatorControl" 
-                                 Grid.Row="2" Height="80"
+        <ad:AdRotatorControl x:Name="adRotatorControl" IsEnabled="True" 
+                                 Grid.Row="2" Height="80" HorizontalAlignment="Stretch" DefaultAdType="PubCenter"
+                                 DefaultSettingsFileUri="Assets\AdSettingsxml.xml"
+                                 SettingsUrl="Assets\AdSettingsxml.xml"
                                  VerticalAlignment="Bottom"
-                                 PubCenterAdUnitId="163789" PubCenterAppId="ad957e27-daf5-492f-8fe9-4093d297d4a4"
-                                 >
-                
-            </ad:AdRotatorControl>-->
-        </Grid>
+                                 AdDuplexAppId="93195"
+                                 PubCenterAdUnitId="163789" PubCenterAppId="ad957e27-daf5-492f-8fe9-4093d297d4a4" >
 
+        </ad:AdRotatorControl>
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
             account for the System Tray. Set this to 0 (or remove the margin altogether)
