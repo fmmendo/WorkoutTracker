@@ -1,6 +1,6 @@
-﻿using WorkoutAppBase.Resources;
+﻿using WorkoutTracker.Resources;
 
-namespace WorkoutAppBase
+namespace WorkoutTracker
 {
     /// <summary>
     /// Provides access to string resources.

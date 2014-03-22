@@ -91,47 +91,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\WorkoutAppBase\Controls\ExerciseControl.xaml.cs">
-      <DependentUpon>ExerciseControl.xaml</DependentUpon>
-      <Link>Controls\ExerciseControl.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-      <Link>MainPage.xaml.cs</Link>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\Views\ActivityView.xaml.cs">
-      <Link>Views\ActivityView.xaml.cs</Link>
-      <DependentUpon>ActivityView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\Views\MeasurementsView.xaml.cs">
-      <Link>Views\MeasurementsView.xaml.cs</Link>
-      <DependentUpon>MeasurementsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\Views\OneRepMaxView.xaml.cs">
-      <Link>Views\OneRepMaxView.xaml.cs</Link>
-      <DependentUpon>OneRepMaxView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\Views\RestTimerView.xaml.cs">
-      <Link>Views\RestTimerView.xaml.cs</Link>
-      <DependentUpon>RestTimerView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\Views\Settings.xaml.cs">
-      <Link>Views\Settings.xaml.cs</Link>
-      <DependentUpon>Settings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\WorkoutAppBase\Views\WorkoutView.xaml.cs">
-      <Link>Views\WorkoutView.xaml.cs</Link>
-      <DependentUpon>WorkoutView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ExerciseControl.xaml.cs">
+      <DependentUpon>ExerciseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RestTimerView.xaml.cs">
+      <DependentUpon>RestTimerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActivityView.xaml.cs">
+      <DependentUpon>ActivityView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MeasurementsView.xaml.cs">
+      <DependentUpon>MeasurementsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OneRepMaxView.xaml.cs">
+      <DependentUpon>OneRepMaxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkoutView.xaml.cs">
+      <DependentUpon>WorkoutView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -139,45 +131,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="..\WorkoutAppBase\Controls\ExerciseControl.xaml">
-      <Link>Controls\ExerciseControl.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Controls\ExerciseControl.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="..\WorkoutAppBase\MainPage.xaml">
-      <Link>MainPage.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\RestTimerView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="..\WorkoutAppBase\Views\ActivityView.xaml">
-      <Link>Views\ActivityView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WorkoutAppBase\Views\MeasurementsView.xaml">
-      <Link>Views\MeasurementsView.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WorkoutAppBase\Views\OneRepMaxView.xaml">
-      <Link>Views\OneRepMaxView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WorkoutAppBase\Views\RestTimerView.xaml">
-      <Link>Views\RestTimerView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WorkoutAppBase\Views\Settings.xaml">
-      <Link>Views\Settings.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="..\WorkoutAppBase\Views\WorkoutView.xaml">
-      <Link>Views\WorkoutView.xaml</Link>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -187,6 +151,26 @@
     <Page Include="Theme\Theme.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActivityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MeasurementsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OneRepMaxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkoutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +214,7 @@
     <SplashScreen Include="defaultAdSettings.xml" />
     <None Include="ReadMe-AdRotator-XAML.txt" />
     <Content Include="Assets\1rm.png" />
+    <Content Include="README_FIRST.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
@@ -276,7 +261,6 @@
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
