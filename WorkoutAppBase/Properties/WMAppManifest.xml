@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{5758374f-e2b8-4d95-bdb2-07d71fdbde3b}" Title="WorkoutTracker" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="WorkoutTracker author" Description="Sample description" Publisher="WorkoutTracker" PublisherID="{57b5f55f-31eb-4e08-9411-8f4bbfede76e}">
+  <App xmlns="" ProductID="{9382ae9a-c6b9-4454-8718-155c13715b72}" Title="WorkoutAppBase" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="WorkoutAppBase author" Description="Sample description" Publisher="WorkoutAppBase" PublisherID="{eddc087b-9d25-4aaa-bc9a-159f55b15690}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING"/>
@@ -15,12 +15,12 @@
       <DefaultTask  Name ="_default" NavigationPage="MainPage.xaml"/>
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="WorkoutTrackerToken" TaskName="_default">
+      <PrimaryToken TokenID="WorkoutAppBaseToken" TaskName="_default">
         <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>WorkoutTracker</Title>
+          <Title>WorkoutAppBase</Title>
           <BackContent></BackContent>
           <BackBackgroundImageURI></BackBackgroundImageURI>
           <BackTitle></BackTitle>

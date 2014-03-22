@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WorkoutTracker")]
+[assembly: AssemblyTitle("WorkoutAppBase")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WorkoutTracker")]
+[assembly: AssemblyProduct("WorkoutAppBase")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bbf30b49-fcce-453d-b61f-3c0fcd03446c")]
+[assembly: Guid("74e54c7e-efbc-412c-b123-3db2f5a3fb69")]
 
 // Version information for an assembly consists of the following four values:
 //

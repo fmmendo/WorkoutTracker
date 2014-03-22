@@ -6,9 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using WorkoutTracker.Resources;
+using WorkoutAppBase.Resources;
 
-namespace WorkoutTracker
+namespace WorkoutAppBase
 {
     public partial class App : Application
     {
