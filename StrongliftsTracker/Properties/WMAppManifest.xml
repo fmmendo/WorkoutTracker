@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{8a5e6cea-9425-4810-9427-75ef2382cb4c}" Title="StrongliftsTracker" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="StrongliftsTracker author" Description="Workout tracking app for Stronglifts 5x5" Publisher="StrongliftsTracker" PublisherID="{f8016602-4483-4390-ad55-ee2f2ebfdd26}">
+  <App xmlns="" ProductID="{8a5e6cea-9425-4810-9427-75ef2382cb4c}" Title="StrongliftsTracker" RuntimeType="Silverlight" Version="1.0.0.1" Genre="apps.normal" Author="StrongliftsTracker author" Description="Workout tracking app for Stronglifts 5x5" Publisher="StrongliftsTracker" PublisherID="{f8016602-4483-4390-ad55-ee2f2ebfdd26}">
     <IconPath IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -11,7 +11,8 @@
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" /></Tasks>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" />
+    </Tasks>
     <Tokens>
       <PrimaryToken TokenID="StrongliftsTrackerToken" TaskName="_default">
         <TemplateFlip>
