@@ -1,0 +1,92 @@
+﻿{
+    "Plan": {
+        "Name": "4 Hour Body",
+        "Description": "4 Hour Body Program",
+        "Workouts": [
+            {
+			    "Id": 1,
+                "Name": "Workout A",
+                "Description": "1st Workout",
+                "StrengthExerciseList": [
+                    {
+                        "Name": "Close-grip Pulldown",
+                        "Description": "desc",
+                        "Order": 1,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 7,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Machine Shoulder Press",
+                        "Description": "desc..",
+                        "Order": 2,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 7,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Myotatic Crunch",
+                        "Description": "desc..",
+                        "Order": 3,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "SetType": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+			    "Id": 2,
+                "Name": "Workout B",
+                "Description": "2nd Workout",
+                "StrengthExerciseList": [
+                    {
+                        "Name": "Incline/Decline Bench Press",
+                        "Description": "desc..",
+                        "Order": 1,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 7,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Leg Press",
+                        "Description": "press it",
+                        "Order": 2,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 10,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Kettlebell Swings",
+                        "Description": "tough one",
+                        "Order": 3,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "SetType": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

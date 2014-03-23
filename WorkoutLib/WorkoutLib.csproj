@@ -87,6 +87,7 @@
     <Compile Include="Model\ExerciseBase.cs" />
     <Compile Include="Model\ExerciseValues.cs" />
     <Compile Include="Model\Plan.cs" />
+    <Compile Include="Model\PlanProgressConfiguration.cs" />
     <Compile Include="Model\Set.cs" />
     <Compile Include="Model\StrengthExercise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

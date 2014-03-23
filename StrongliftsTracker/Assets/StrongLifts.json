@@ -1,5 +1,14 @@
 ﻿{
     "Plan": {
+		"PlanProgressConfiguration" : 
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":0
+			},
         "Name": "STRONGLIFTS 5x5",
         "Description": "Stronglifts 5x5 Program",
         "Workouts": [
@@ -10,7 +19,7 @@
                 "StrengthExerciseList": [
                     {
                         "Name": "Squat",
-                        "Description": "desc",
+                        "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
                         "Order": 1,
 						"RestTime": 60,
                         "Sets": [
@@ -38,7 +47,7 @@
                     },
                     {
                         "Name": "Bench Press",
-                        "Description": "desc..",
+                        "Description": "Lie on an upright support bench or a bench inside a Power Rack. Unrack the weight & lower it to your chest. Press it back up until your arms are locked.",
                         "Order": 2,
 						"RestTime": 60,
                         "Sets": [
@@ -66,7 +75,7 @@
                     },
                     {
                         "Name": "Barbell Row",
-                        "Description": "desc..",
+                        "Description": "Row each rep from the floor. Grip the bar like you Bench Press and pull with your elbows. Row against your chest while keeping your upper-back parallel",
                         "Order": 3,
 						"RestTime": 60,
                         "Sets": [
@@ -101,7 +110,7 @@
                 "StrengthExerciseList": [
                     {
                         "Name": "Squat",
-                        "Description": "desc..",
+                        "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
                         "Order": 1,
 						"RestTime": 60,
                         "Sets": [
@@ -129,7 +138,7 @@
                     },
                     {
                         "Name": "Overhead Press",
-                        "Description": "press it",
+                        "Description": "Press the bar from your front shoulders overhead until your elbows are locked.",
                         "Order": 2,
 						"RestTime": 60,
                         "Sets": [
@@ -157,7 +166,7 @@
                     },
                     {
                         "Name": "Dead Lift",
-                        "Description": "tough one",
+                        "Description": "Stand with the bar above the center of your feet, grab the bar overhand and bend through your knees until your shins hit the bar. Lift your chest and pull.",
                         "Order": 3,
 						"RestTime": 120,
                         "Sets": [

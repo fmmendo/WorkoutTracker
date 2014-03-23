@@ -12,6 +12,11 @@ namespace WorkoutLib.Model
     public class Plan
     {
         /// <summary>
+        /// Settings for how to progress along this plan
+        /// </summary>
+        public PlanProgressConfiguration PlanProgressConfiguration { get; set; }
+
+        /// <summary>
         /// Identifier for this workout
         /// </summary>
         public string Name { get; set; }

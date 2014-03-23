@@ -7,9 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using StrongliftsTracker.Resources;
+using FourHourBodyTracker.Resources;
 
-namespace StrongliftsTracker
+namespace FourHourBodyTracker
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -17,10 +17,10 @@ namespace StrongliftsTracker
         public MainPage()
         {
             InitializeComponent();
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
 
             Loaded += MainPage_Loaded;
+            // Sample code to localize the ApplicationBar
+            //BuildLocalizedApplicationBar();
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)

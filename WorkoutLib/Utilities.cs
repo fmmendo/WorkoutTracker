@@ -34,14 +34,48 @@ namespace WorkoutLib
             PartialReps
         }
 
+        public enum PlanProgressChange
+        {
+            Increase,
+            Decrease
+        }
+
+        public enum PlanProgressAffectedValue
+        { 
+            Weight, 
+            Reps, 
+            Time
+        }
+
+        public enum PlanProgressAffectedTime
+        {
+            Week,
+            Month,
+            Day,
+            Workout
+        }
+
+        public enum PlanProgressUnit
+        {
+            Lbs, 
+            Kg, 
+            Percent, 
+            Minutes, 
+            Seconds,
+        }
+
         public static readonly List<int> Percentages = new List<int>() { 50, 55, 60, 65, 70, 75, 80, 85, 90, 95 };
 
         public static readonly int TIME_INCREMENT =30;
+
+        public static readonly string PLAN_START_DATE = "plan_start_date";
+        public static readonly string NUMBER_COMPLETED_WORKOUTS = "number_completed_workouts";
 
         public static readonly string GENDER_SETTING = "setting_gender";
         public static readonly string UNIT_SETTING = "setting_unit";
         public static readonly string ONERM_SETTING = "setting_unit";
         public static readonly string NEXTWORKOUT_SETTING = "setting_nextworkout";
+
         public static readonly string WAIST_MEASUREMENT = "measurement_waist";
         public static readonly string MECK_MEASUREMENT = "measurement_neck";
         public static readonly string HEIGHT_MEASUREMENT = "measurement_height";
@@ -57,6 +91,7 @@ namespace WorkoutLib
         public static readonly string CHEST_MEASUREMENT = "measurement_chest";
         public static readonly string SHOULDERS_MEASUREMENT = "measurement_shoulders";
         public static readonly string WEIGHT_MEASUREMENT = "measurement_weight";
+        
         public static readonly string ONEREPMAXVALUES = "one_rep_max_values";
 
         public static string LoadJsonFromFile(string path)
@@ -69,6 +104,17 @@ namespace WorkoutLib
                     return json.Result;
                 }
             }
+        }
+
+        public static readonly double PoundKGFraction = 0.45359237;
+
+        public static double PoundsToKg(double pounds)
+        {
+            return pounds * PoundKGFraction;
+        }
+        public static double KgToPounds(double kg)
+        {
+            return kg / PoundKGFraction;
         }
     }
 }

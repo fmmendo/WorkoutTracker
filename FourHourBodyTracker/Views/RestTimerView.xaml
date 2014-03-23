@@ -1,0 +1,55 @@
+﻿<phone:PhoneApplicationPage x:Class="FourHourBodyTracker.Controls.RestTimerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    Background="Black"
+    Visibility="{Binding TimerVisibility}"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackground1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding AppName}" Style="{StaticResource TextBlockNormalStyle}"/>
+            <TextBlock Grid.Row="0"  Grid.ColumnSpan="3" Style="{StaticResource TextBlockPageTitleStyle}">rest timer</TextBlock>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Margin="10,151,14,10" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RestSecondsString}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{StaticResource FontSizeHuge}"></TextBlock>
+            <!--<TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">seconds</TextBlock>-->
+            <TextBlock Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="Gray">Recommended rest time between sets: 60 seconds</TextBlock>
+
+            <Button Grid.Row="1" Command="{Binding LessTimeCommand}" VerticalAlignment="Center" Height="100" Width="100" Grid.Column="0" Style="{StaticResource ButtonStyle}">-30s</Button>
+            <Button Grid.Row="1" Command="{Binding MoreTimeCommand}" VerticalAlignment="Center" Height="100" Width="100" Grid.Column="2" Style="{StaticResource ButtonStyle}">+30s</Button>
+
+            <Button Grid.Row="5" Command="{Binding ImDoneCommand}" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Click="Button_Click">I'M READY</Button>
+        </Grid>
+    </Grid>
+</phone:PhoneApplicationPage>

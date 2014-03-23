@@ -49,9 +49,14 @@ namespace WorkoutLib.ViewModel
         }
 
         /// <summary>
-        /// Name of the workout
+        /// Name of the exercise
         /// </summary>
         public string ExerciseName { get { return Exercise.Name; } }
+
+        /// <summary>
+        /// Description for the exercise
+        /// </summary>
+        public string Description { get { return Exercise.Description; } }
 
         /// <summary>
         /// Number of Reps
@@ -144,19 +149,45 @@ namespace WorkoutLib.ViewModel
 
                     ret = false; //no more exercises
 
-                    var maxId = WorkoutService.Service.Plan.Workouts.Max(w => w.Id);
-                    if (WorkoutService.Service.Plan.CurrentWorkout + 1 < maxId)
-                        StorageUtility.WriteSetting(Utilities.NEXTWORKOUT_SETTING, WorkoutService.Service.Plan.CurrentWorkout + 1);
-                    else
-                        StorageUtility.WriteSetting(Utilities.NEXTWORKOUT_SETTING, 0);
+                    SaveDateIfFirstWorkout();
+                    SetNextWorkout();
+                    SetNumberOfCompletedWorkouts();
                 }
             }
 
             NotifyPropertyChanged("ExerciseName");
             NotifyPropertyChanged("Reps");
+            NotifyPropertyChanged("Description");
 
             Sets[CurrentSet].CurrentSet = true;
             return ret;
+        }
+
+        private static void SetNextWorkout()
+        {
+            var maxId = WorkoutService.Service.Plan.Workouts.Max(w => w.Id);
+            if (WorkoutService.Service.Plan.CurrentWorkout + 1 < maxId)
+                StorageUtility.WriteSetting(Utilities.NEXTWORKOUT_SETTING, WorkoutService.Service.Plan.CurrentWorkout + 1);
+            else
+                StorageUtility.WriteSetting(Utilities.NEXTWORKOUT_SETTING, 0);
+        }
+
+        private static void SaveDateIfFirstWorkout()
+        {
+            object o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+
+            if (o == null) //no date stored
+                StorageUtility.WriteSetting(Utilities.PLAN_START_DATE, DateTime.Today.ToShortDateString());
+        }
+
+        private static void SetNumberOfCompletedWorkouts()
+        {
+            object o = StorageUtility.ReadSetting(Utilities.NUMBER_COMPLETED_WORKOUTS);
+
+            if (o != null)
+                StorageUtility.WriteSetting(Utilities.NUMBER_COMPLETED_WORKOUTS, ((int)o) + 1);
+            else
+                StorageUtility.WriteSetting(Utilities.NUMBER_COMPLETED_WORKOUTS, 1);
         }
     }
 }
