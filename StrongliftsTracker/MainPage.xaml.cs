@@ -23,6 +23,14 @@ namespace StrongliftsTracker
             Loaded += MainPage_Loaded;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //clear back stack
+            while (NavigationService.CanGoBack) NavigationService.RemoveBackEntry();
+
+            base.OnNavigatedFrom(e);
+        }
+
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             adRotatorControl.Invalidate();

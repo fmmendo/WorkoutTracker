@@ -152,6 +152,8 @@ namespace WorkoutLib.ViewModel
         {
             object gender = StorageUtility.ReadSetting(Utilities.GENDER_SETTING);
             object unit = StorageUtility.ReadSetting(Utilities.UNIT_SETTING);
+            object percentage = StorageUtility.ReadSetting(Utilities.ONERM_SETTING);
+
 
             if (gender != null)
                 Gender = (Utilities.Gender)gender;
@@ -160,6 +162,10 @@ namespace WorkoutLib.ViewModel
             if (unit != null)
                 Unit = (Utilities.Unit)unit;
             else Unit = Utilities.Unit.Imperial; //default
+
+            if (percentage != null)
+                SelectedPercentage = (string)percentage;
+            else SelectedPercentage = "50"; //default
 
             ResetPlanCommand = new ButtonCommand(ExecuteResetPlan, CanExecuteResetPlan);
             ResetAppCommand = new ButtonCommand(ExecuteResetApp, CanExecuteResetApp);

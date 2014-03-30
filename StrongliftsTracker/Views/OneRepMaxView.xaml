@@ -51,7 +51,7 @@
                     </ListBox>
 
                     <TextBlock Style="{StaticResource TextBlockNormalStyle}" Grid.Row="3" Grid.ColumnSpan="3" Margin="12,0">Enter exercise name to save:</TextBlock>
-                    <toolkit:AutoCompleteBox ItemsSource="{Binding Exercises}" Text="{Binding ExerciseName, Mode=TwoWay}" Grid.Row="4" Grid.ColumnSpan="3"></toolkit:AutoCompleteBox>
+                    <toolkit:ListPicker ItemsSource="{Binding Exercises}" SelectedItem="{Binding ExerciseName, Mode=TwoWay}" Grid.Row="4" Grid.ColumnSpan="3"></toolkit:ListPicker>
                     <Button Grid.Row="5" Command="{Binding SaveCommand}" IsEnabled="{Binding CanExecuteSaveCommand}" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" BorderBrush="Transparent">Save</Button>
                 </Grid>
             </phone:PivotItem>

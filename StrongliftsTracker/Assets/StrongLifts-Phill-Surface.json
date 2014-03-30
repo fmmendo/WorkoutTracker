@@ -10,7 +10,7 @@
 				"TimeFrame":0
 			},
         "Name": "STRONGLIFTS 5x5",
-        "Description": "Stronglifts 5x5",
+        "Description": "Stronglifts 5x5 Program",
         "Workouts": [
             {
 			    "Id": 1,
