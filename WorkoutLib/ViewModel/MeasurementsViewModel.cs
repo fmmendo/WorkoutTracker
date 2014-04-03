@@ -8,6 +8,25 @@ namespace WorkoutLib.ViewModel
 {
     public class MeasurementsViewModel : ViewModelBase
     {
+        public List<string> BodyParts = new List<string>
+        {
+            "Waist",
+            "Neck",
+            "Height",
+            "LeftUpperArm",
+            "LeftLowerArm",
+            "LeftQuad",
+            "LeftCalf",
+            "RightUpperArm",
+            "RightLowerArm",
+            "RightQuad",
+            "RightCalf",
+            "Thighs",
+            "Chest",
+            "Shoulders",
+            "Weight"
+        };
+
         public double BodyFat
         {
             get

@@ -160,6 +160,7 @@ namespace WorkoutLib.ViewModel
             {
                 Exercise1RMs = (ObservableCollection<ExerciseValues>)o;
             }
+            ExerciseName = Exercises.ElementAt(0);
         }
 
         private void GetOneRepMaxValue()

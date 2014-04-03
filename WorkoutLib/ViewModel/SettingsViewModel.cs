@@ -74,7 +74,7 @@ namespace WorkoutLib.ViewModel
             set
             {
                 _selectedPercentage = value;
-                StorageUtility.WriteSetting(Utilities.ONERM_SETTING, _unit);
+                StorageUtility.WriteSetting(Utilities.ONERM_SETTING, _selectedPercentage);
             }
         }
         #endregion
@@ -155,15 +155,15 @@ namespace WorkoutLib.ViewModel
             object percentage = StorageUtility.ReadSetting(Utilities.ONERM_SETTING);
 
 
-            if (gender != null)
+            if (gender != null && gender is Utilities.Gender)
                 Gender = (Utilities.Gender)gender;
             else Gender = Utilities.Gender.Male; //default
 
-            if (unit != null)
+            if (unit != null && unit is Utilities.Unit)
                 Unit = (Utilities.Unit)unit;
             else Unit = Utilities.Unit.Imperial; //default
 
-            if (percentage != null)
+            if (percentage != null && percentage is string)
                 SelectedPercentage = (string)percentage;
             else SelectedPercentage = "50"; //default
 
