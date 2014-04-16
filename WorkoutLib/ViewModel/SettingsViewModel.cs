@@ -77,6 +77,20 @@ namespace WorkoutLib.ViewModel
                 StorageUtility.WriteSetting(Utilities.ONERM_SETTING, _selectedPercentage);
             }
         }
+
+        private bool _planProgress;
+        /// <summary>
+        /// Selected One Rep Max percentage for usage in the app
+        /// </summary>
+        public bool PlanProgress
+        {
+            get { return _planProgress; }
+            set
+            {
+                _planProgress = value;
+                StorageUtility.WriteSetting(Utilities.PLANPROGRESS_SETTING, _planProgress);
+            }
+        }
         #endregion
 
         /// <summary>
@@ -153,7 +167,7 @@ namespace WorkoutLib.ViewModel
             object gender = StorageUtility.ReadSetting(Utilities.GENDER_SETTING);
             object unit = StorageUtility.ReadSetting(Utilities.UNIT_SETTING);
             object percentage = StorageUtility.ReadSetting(Utilities.ONERM_SETTING);
-
+            object progress = StorageUtility.ReadSetting(Utilities.PLANPROGRESS_SETTING);
 
             if (gender != null && gender is Utilities.Gender)
                 Gender = (Utilities.Gender)gender;
@@ -166,6 +180,10 @@ namespace WorkoutLib.ViewModel
             if (percentage != null && percentage is string)
                 SelectedPercentage = (string)percentage;
             else SelectedPercentage = "50"; //default
+
+            if (progress != null && progress is bool)
+                PlanProgress = (bool)percentage;
+            else PlanProgress = true; //default
 
             ResetPlanCommand = new ButtonCommand(ExecuteResetPlan, CanExecuteResetPlan);
             ResetAppCommand = new ButtonCommand(ExecuteResetApp, CanExecuteResetApp);

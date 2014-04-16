@@ -29,7 +29,18 @@ namespace WorkoutLib.ViewModel
         {
             get
             {
-                return Plan.Workouts.ElementAt(Plan.CurrentWorkout).Name;
+                return WorkoutService.Service.CurrentWorkout.Name;
+            }
+        }
+
+        /// <summary>
+        /// Description for the current workout
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return WorkoutService.Service.CurrentWorkout.Description;
             }
         }
 
@@ -50,7 +61,7 @@ namespace WorkoutLib.ViewModel
             }
             
 
-            foreach (var e in Plan.Workouts.ElementAt(Plan.CurrentWorkout).StrengthExerciseList.OrderBy(o => o.Order))
+            foreach (var e in WorkoutService.Service.CurrentWorkout.StrengthExerciseList.OrderBy(o => o.Order))
             {
                 ExerciseList.Add(new ExerciseViewModel(e));
             }

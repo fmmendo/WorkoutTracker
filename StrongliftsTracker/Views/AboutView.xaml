@@ -1,0 +1,69 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="StrongliftsTracker.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot"  Background="{StaticResource AppBackground1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="{Binding AppName}" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <phone:Pivot Grid.Row="1">
+            <phone:PivotItem Header="about">
+                <!--ContentPanel - place additional content here-->
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12">This is an unnoficial app that allows you to track you progress in the Stronglifts 5x5 Workout. More information can be found at:</TextBlock>
+                    <HyperlinkButton Margin="0,0,0,12">http://stronglifts.com/5x5/</HyperlinkButton>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource TextHeaderStyle}">Summary of Stronglifts 5×5</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12">StrongLifts 5×5 consists of two full body-workouts:</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12">• Workout A: Squat, Bench Press, Barbell Row</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12">• Workout B: Squat, Overhead Press, Deadlift</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12">You train three times a week, alternating workout A and B, and resting at least one day between two workouts. You never train two days in a row because your body needs days off to get stronger.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,12">Don’t start too heavy or you’ll get sore legs and feel like skipping workouts in week one. Start light to let your body get used to Squatting three times a week. Remember you’re adding 2.5kg/5lb per workout or 30kg/60lb per month on Squats. The weight will increase fast. No need to start too heavy.</TextBlock>
+                </StackPanel>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="f.a.q.">
+
+                <Grid x:Name="FAQPanel" Grid.Row="1" Margin="12,0,12,0">
+                        <ListBox ItemsSource="{Binding FaqList}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextHeaderStyle}" Margin="0,12,12,0" VerticalAlignment="Top">Q:</TextBlock>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource TextHeaderStyle}" Margin="0,0,12,0" VerticalAlignment="Top">A:</TextBlock>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Question}" Style="{StaticResource TextHeaderStyle}" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Answer}" Style="{StaticResource TextBlockNormalStyle}" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                </Grid>
+            </phone:PivotItem>
+        </phone:Pivot>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

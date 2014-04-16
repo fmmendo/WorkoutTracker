@@ -21,7 +21,7 @@ namespace WorkoutLib.ViewModel
         {
             get
             {
-                return WorkoutService.Service.Plan.Workouts.ElementAt(WorkoutService.Service.Plan.CurrentWorkout);
+                return WorkoutService.Service.CurrentWorkout;
             }
         }
 

@@ -76,6 +76,12 @@
                         <TextBlock Foreground="White" HorizontalAlignment="Center">Settings</TextBlock>
                     </StackPanel>
                 </Button>
+                <Button Height="112" Width="112" Background="{StaticResource GradientYellow}" BorderBrush="Transparent" Click="About_Click">
+                    <StackPanel>
+                        <Image Source="Assets\settings.png" Height="112" Margin="12"></Image>
+                        <TextBlock Foreground="White" HorizontalAlignment="Center">Settings</TextBlock>
+                    </StackPanel>
+                </Button>
                 <!--<Button Click="Measurements_Click">Measurements</Button>-->
             </toolkit:WrapPanel>
        </Grid>

@@ -75,6 +75,7 @@ namespace WorkoutLib
         public static readonly string UNIT_SETTING = "setting_unit";
         public static readonly string ONERM_SETTING = "setting_unit";
         public static readonly string NEXTWORKOUT_SETTING = "setting_nextworkout";
+        public static readonly string PLANPROGRESS_SETTING = "setting_planprogress";
 
         public static readonly string WAIST_MEASUREMENT = "measurement_waist";
         public static readonly string MECK_MEASUREMENT = "measurement_neck";

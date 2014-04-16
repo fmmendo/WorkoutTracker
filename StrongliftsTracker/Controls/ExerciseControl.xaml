@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0" Background="{StaticResource PhoneAccentBrush}" Margin="12" HorizontalAlignment="Stretch">
-            <TextBlock Text="{Binding Name}" Style="{StaticResource TextHeaderStyle}" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+            <TextBlock Text="{Binding Name}" Style="{StaticResource TextHeaderStyle}" Margin="12,6,0,6" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
         </Border>
         <ListBox Grid.Row="1" ItemsSource="{Binding Sets}" Style="{StaticResource ListboxItemsStyle}">
             <ListBox.ItemTemplate>

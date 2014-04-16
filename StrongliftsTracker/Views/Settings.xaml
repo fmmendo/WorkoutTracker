@@ -28,7 +28,7 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <ScrollViewer x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <!--Gender Selection-->
                 <TextBlock Style="{StaticResource TextHeaderStyle}">Gender</TextBlock>
@@ -41,6 +41,7 @@
                         </DataTemplate>
                     </toolkit:ListPicker.ItemTemplate>
                 </toolkit:ListPicker>
+                <TextBlock Style="{StaticResource TextBlockSubtleStyle}">Used in calculations, such as Body Fat %</TextBlock>
                 <!--Unit Selection-->
                 <TextBlock Style="{StaticResource TextHeaderStyle}">Units</TextBlock>
                 <toolkit:ListPicker ItemsSource="{Binding UnitList}" SelectedItem="{Binding Unit, Mode=TwoWay}" >
@@ -52,6 +53,7 @@
                         </DataTemplate>
                     </toolkit:ListPicker.ItemTemplate>
                 </toolkit:ListPicker>
+                <TextBlock Style="{StaticResource TextBlockSubtleStyle}">So you get the weights in a unit you understand</TextBlock>
                 <!--1RM Selection-->
                 <TextBlock Style="{StaticResource TextHeaderStyle}">1RM % to use for exercises</TextBlock>
                 <toolkit:ListPicker ItemsSource="{Binding Percentages}" SelectedItem="{Binding SelectedPercentage, Mode=TwoWay}" >
@@ -77,27 +79,20 @@
                         </DataTemplate>
                     </toolkit:ListPicker.FullModeItemTemplate>
                 </toolkit:ListPicker>
+                <TextBlock TextWrapping="Wrap" Style="{StaticResource TextBlockSubtleStyle}">Used to calculate how much you should lift. We recommend starting low at 50%</TextBlock>
+
+                <toolkit:ToggleSwitch Margin="-12,0,0,-25" IsChecked="{Binding PlanProgress, Mode=TwoWay}" FontSize="{StaticResource FontSizeLarge}" FontFamily="{StaticResource FontSemiLight}">Plan Progression</toolkit:ToggleSwitch>
+                <TextBlock Style="{StaticResource TextBlockSubtleStyle}">Adds 5lbs/2.5kg every week</TextBlock>
+
                 <TextBlock Style="{StaticResource TextHeaderStyle}">Reset plan to day 1</TextBlock>
                 <Button Command="{Binding ResetPlanCommand}" Style="{StaticResource ButtonStyle}">Reset Plan</Button>
+                <TextBlock Style="{StaticResource TextBlockSubtleStyle}">Resets your progress in the plan</TextBlock>
+
                 <TextBlock Style="{StaticResource TextHeaderStyle}">Clear all data</TextBlock>
                 <Button Command="{Binding ResetAppCommand}" Style="{StaticResource ButtonStyle}">Reset App</Button>
+                <TextBlock Style="{StaticResource TextBlockSubtleStyle}">Completely resets the app</TextBlock>
             </StackPanel>
-        </Grid>
-        <!--Pivot Control-->
-        <!--<phone:Pivot Title="SETTINGS">-->
-        <!--Pivot item one-->
-        <!--<phone:PivotItem Header="app settings">-->
-
-        <!--</phone:PivotItem>-->
-
-        <!--Pivot item three-->
-        <!--<phone:PivotItem Header="exercises">
-                <StackPanel>
-                    <TextBlock>Exercises 1 Rep Max</TextBlock>
-                    <Button>Update 1 Rep Max</Button>
-                </StackPanel>
-            </phone:PivotItem>-->
-        <!--</phone:Pivot>-->
+        </ScrollViewer>
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -60,9 +60,17 @@
         <Setter Property="FontSize" Value="{StaticResource FontSizeExtraExtraLarge}"/>
     </Style>
 
+    <Style x:Key="TextBlockSubtleStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource FontSemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}"/>
+        <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+        <Setter Property="Margin" Value="12,0,12,12"/>
+    </Style>
+
     <Style x:Key="TextHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBase}">
         <Setter Property="FontFamily" Value="{StaticResource FontSemiLight}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+        <Setter Property="Margin" Value="0,12,0,0"/>
     </Style>
 
     <!--Button-->

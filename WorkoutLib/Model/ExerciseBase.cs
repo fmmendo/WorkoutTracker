@@ -9,7 +9,7 @@ namespace WorkoutLib.Model
     /// <summary>
     /// 
     /// </summary>
-    public class ExerciseBase
+    public class Exercise
     {
         /// <summary>
         /// Name of the exercise

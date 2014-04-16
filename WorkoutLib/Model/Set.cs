@@ -24,11 +24,11 @@ namespace WorkoutLib.Model
         /// <summary>
         /// Unit in which the current weight is presented
         /// </summary>
-        public WorkoutLib.Utilities.Unit Unit { get; set; }
+        public Utilities.Unit Unit { get; set; }
 
         /// <summary>
         /// Type of set
         /// </summary>
-        public WorkoutLib.Utilities.SetType SetType { get; set; }
+        public Utilities.SetType SetType { get; set; }
     }
 }

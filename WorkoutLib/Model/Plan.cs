@@ -35,6 +35,11 @@ namespace WorkoutLib.Model
         /// ID for the current workout in the plan
         /// </summary>
         public int CurrentWorkout { get; set; }
+
+        /// <summary>
+        /// Collection of questions and answers regarding the plan.
+        /// </summary>
+        public IEnumerable<FAQ> FAQ { get; set; }
     }
 
     /// <summary>

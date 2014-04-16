@@ -28,10 +28,50 @@ namespace WorkoutLib
         #endregion
 
         private Plan _plan;
+        /// <summary>
+        /// The current plan
+        /// </summary>
         public Plan Plan
         {
             get { return _plan; }
             set { _plan = value; }
+        }
+
+        /// <summary>
+        /// Gets the current workout
+        /// </summary>
+        public Workout CurrentWorkout
+        {
+            get
+            {
+                if (Plan == null || Plan.Workouts == null || Plan.Workouts.Count() <= 0)
+                    return null;
+
+                return Plan.Workouts.ElementAt(Plan.CurrentWorkout);
+            }
+        }
+
+        /// <summary>
+        /// Exercise list
+        /// </summary>
+        public IEnumerable<string> Exercises
+        {
+            get
+            {
+                List<string> names = new List<string>();
+
+                if (WorkoutService.Service.Plan == null)
+                    return names;
+
+                foreach (var w in WorkoutService.Service.Plan.Workouts)
+                {
+                    foreach (var e in w.StrengthExerciseList)
+                        if (!names.Contains(e.Name))
+                            names.Add(e.Name);
+                }
+
+                return names;
+            }
         }
 
         private WorkoutService()
@@ -56,25 +96,6 @@ namespace WorkoutLib
         public void ClearPlan()
         {
             _plan = null;
-        }
-
-        /// <summary>
-        /// Exercise list
-        /// </summary>
-        public IEnumerable<string> Exercises
-        {
-            get
-            {
-                List<string> names = new List<string>();
-                foreach (var w in WorkoutService.Service.Plan.Workouts)
-                {
-                    foreach (var e in w.StrengthExerciseList)
-                        if (!names.Contains(e.Name))
-                            names.Add(e.Name);
-                }
-
-                return names;
-            }
         }
 
         public static Plan DeserializePlan(string json)
