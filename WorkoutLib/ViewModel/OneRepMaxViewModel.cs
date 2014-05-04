@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkoutLib.Model;
+using WorkoutLib.Model.Storage;
 
 namespace WorkoutLib.ViewModel
 {
@@ -48,7 +49,7 @@ namespace WorkoutLib.ViewModel
         /// </summary>
         public IEnumerable<string> Exercises
         {
-            get { return WorkoutService.Service.Exercises; }
+            get { return WorkoutService.Service.ExerciseNames; }
         }
 
         private string _exerciseName;
@@ -137,7 +138,7 @@ namespace WorkoutLib.ViewModel
             }
             // If not, add new
             else
-                Exercise1RMs.Add(new ExerciseValues() { Name=ExerciseName, OneRepMaxValue=OneRepMaxValue, Percentages=Percentages});
+                Exercise1RMs.Add(new ExerciseValues() { Name=ExerciseName, OneRepMaxValue=OneRepMaxValue, Percentages=Percentages, Unit=UserSettings.Settings.Unit});
 
             StorageUtility.WriteSetting(Utilities.ONEREPMAXVALUES, Exercise1RMs);
 

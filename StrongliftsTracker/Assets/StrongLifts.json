@@ -1,14 +1,102 @@
 ﻿{
     "Plan": {
-		"PlanProgressConfiguration" : 
+		"ProgressConfiguration" : [
+			{
+				"Progress": 0,
+				"AffectedSetting":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Squat",
+                "TargetExercise":"Squat",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
 			{
 				"Progress": 0,
 				"AffectedValue":0,
 				"Amount":5,
 				"Unit":0,
 				"TimeAmount":1,
-				"TimeFrame":0
+				"TimeFrame":4,
+                "ExerciseName":"Bench Press",
+                "TargetExercise":"Bench Press",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
 			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Barbell Row",
+                "TargetExercise":"Barbell Row",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Overhead Press",
+                "TargetExercise":"Overhead Press",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":10,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Dead Lift",
+                "TargetExercise":"Dead Lift",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			}
+		],
         "Name": "STRONGLIFTS 5x5",
         "Description": "StrongLifts 5×5 consists of two full body-workouts:\nWorkout A: Squat, Bench Press, Barbell Row\nWorkout B: Squat, Overhead Press, Deadlift\n\nYou train three times a week, alternating workout A and B, and resting at least one day between two workouts. You never train two days in a row because your body needs days off to get stronger.",
         "Workouts": [
@@ -16,7 +104,7 @@
 			    "Id": 1,
                 "Name": "Workout A",
                 "Description": "The 1st Workout in the Stronglifts 5x5 Program consists of Squats, Bench Press and Barbell Row, for 5 sets of 5 reps each.",
-                "StrengthExerciseList": [
+                "ExerciseList": [
                     {
                         "Name": "Squat",
                         "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
@@ -137,7 +225,7 @@
 			    "Id": 2,
                 "Name": "Workout B",
                 "Description": "The 2st Workout in the Stronglifts 5x5 Program consists of Squats and Overhead Press for 5 sets of 5 reps each, and Deadlift for 1 sets of 5 reps due to the deadlift being a lot more taxing on the body.",
-                "StrengthExerciseList": [
+                "ExerciseList": [
                     {
                         "Name": "Squat",
                         "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",

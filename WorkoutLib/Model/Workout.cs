@@ -26,11 +26,6 @@ namespace WorkoutLib.Model
         /// <summary>
         /// Excercises to Perform
         /// </summary>
-        public List<StrengthExercise> StrengthExerciseList { get; set; }
-        
-        ///// <summary>
-        ///// Excercises to Perform
-        ///// </summary>
-        //public List<CardioExercise> CardioExercise { get; set; }
+        public List<Exercise> ExerciseList { get; set; }
     }
 }

@@ -9,16 +9,16 @@ namespace WorkoutLib.Model
     /// <summary>
     /// 
     /// </summary>
-    public class CardioExercise : ExerciseBase
-    {
-        /// <summary>
-        /// Duration for the exercise
-        /// </summary>
-        public TimeSpan Duration { get; set; }
+    //public class CardioExercise : ExerciseBase
+    //{
+    //    /// <summary>
+    //    /// Duration for the exercise
+    //    /// </summary>
+    //    public TimeSpan Duration { get; set; }
 
-        /// <summary>
-        /// Settings (speed:x, inclination:y, resistance:z, etc...)
-        /// </summary>
-        public Dictionary<string, int> Settings { get; set; }
-    }
+    //    /// <summary>
+    //    /// Settings (speed:x, inclination:y, resistance:z, etc...)
+    //    /// </summary>
+    //    public Dictionary<string, int> Settings { get; set; }
+    //}
 }

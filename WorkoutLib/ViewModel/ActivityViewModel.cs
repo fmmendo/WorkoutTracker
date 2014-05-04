@@ -8,11 +8,15 @@ using System.Windows;
 using System.Windows.Input;
 using WorkoutLib;
 using WorkoutLib.Model;
+using WorkoutLib.Model.Storage;
 
 namespace WorkoutLib.ViewModel
 {
     public class ActivityViewModel : ViewModelBase
     {
+        CompletedWorkout workoutLog;
+        CompletedExercise exerciseLog;
+
         #region Properties
         /// <summary>
         /// Current Workout
@@ -28,11 +32,11 @@ namespace WorkoutLib.ViewModel
         /// <summary>
         /// Current Exercise
         /// </summary>
-        StrengthExercise Exercise
+        Exercise Exercise
         {
             get
             {
-                return Workout.StrengthExerciseList.ElementAt(CurrentExerciseNumber);
+                return WorkoutService.Service.CurrentExercise;
             }
         }
 
@@ -61,7 +65,13 @@ namespace WorkoutLib.ViewModel
         /// <summary>
         /// Number of Reps
         /// </summary>
-        public string Reps { get { return Exercise.Sets[CurrentSet].NumberOfReps.ToString(); } }
+        public string Reps
+        {
+            get
+            {
+                return WorkoutService.Service.CurrentExerciseReps;
+            }
+        }
 
         private string _buttonText;
         /// <summary>
@@ -70,31 +80,48 @@ namespace WorkoutLib.ViewModel
         public string ButtonText
         {
             get { return _buttonText; }
-            set { _buttonText = value; NotifyPropertyChanged(); }
+            set
+            {
+                _buttonText = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public string SetWeight
         {
-
             get
             {
-                var w = Sets.ElementAt(CurrentSet).Weight;
+                var w = Sets.ElementAt(WorkoutService.Service.CurrentSetNumber).Weight;
                 if (!String.IsNullOrEmpty(w))
                     return String.Format("{0} {1}", w, UserSettings.Settings.Unit.Equals(WorkoutLib.Utilities.Unit.Imperial) ? "lbs" : "kg");
                 else return String.Empty;
             }
         }
+
         #endregion
 
-        private int CurrentExerciseNumber = 0;
-        private int CurrentSet = 0;
+        #region Commands
+        public ButtonCommand FailedCommand { get; set; }
+        public bool CanExecuteFailedCommand(object param)
+        {
+            return true;
+        }
+        public void ExecuteFailedCommand(object param)
+        {
+            if (exerciseLog != null)
+                exerciseLog.Successful = false;
 
+            NextExercise();
+        }
+        #endregion
 
         public ActivityViewModel()
         {
-            CurrentExerciseNumber = 0;
-            CurrentSet = 0;
+            WorkoutService.Service.CurrentExerciseNumber = 0;
+            WorkoutService.Service.CurrentSetNumber = 0;
             ButtonText = "NEXT";
+
+            FailedCommand = new ButtonCommand(ExecuteFailedCommand, CanExecuteFailedCommand);
 
             Sets.Clear();
             foreach (var s in Exercise.Sets)
@@ -114,53 +141,105 @@ namespace WorkoutLib.ViewModel
                         // calculate lift weight based on stored %RM
                         w = Exercise1RMs[index].OneRepMaxValue > 0 ? Exercise1RMs[index].OneRepMaxValue * (Int32.Parse(UserSettings.Settings.SelectedPercentage ?? "85") / (double)100) : -1;
                     }
-
                 }
 
                 Sets.Add(new SetViewModel(s, w));
             }
 
-            Sets[CurrentSet].CurrentSet = true;
+            Sets[WorkoutService.Service.CurrentSetNumber].CurrentSet = true;
+
+            SetUpWorkoutLog();
+        }
+
+        private void SetUpWorkoutLog()
+        {
+            workoutLog = new CompletedWorkout();
+            workoutLog.Date = DateTime.Now;
+            workoutLog.Exercises = new List<CompletedExercise>();
+            workoutLog.Id = Workout.Id;
+
+            SetUpExerciseLog();
+        }
+
+        private void SetUpExerciseLog()
+        {
+            exerciseLog = new CompletedExercise();
+            exerciseLog.ExerciseName = ExerciseName;
+            exerciseLog.Sets = new List<Set>(Exercise.Sets);
+            exerciseLog.Successful = true;
         }
 
         public bool NextExercise()
         {
             bool ret = true;
-            Sets[CurrentSet].CurrentSet = false;
-            if (Sets.Count() > CurrentSet + 1)
+            Sets.ElementAt(WorkoutService.Service.CurrentSetNumber).CurrentSet = false;
+            double weight = Double.Parse(Sets.ElementAt(WorkoutService.Service.CurrentSetNumber).Weight);
+            //UpdateCurrentExerciseLog(weight, true);
+
+            //If we're not in the last Set yet, go to next set
+            if (Sets.Count() > WorkoutService.Service.CurrentSetNumber + 1)
             {
-                CurrentSet++;
+                //UpdateCurrentExerciseLog(weight, true);
+
+                WorkoutService.Service.CurrentSetNumber++;
                 ret = true;
             }
             else
             {
-                CurrentSet = 0;
-                if (Workout.StrengthExerciseList.Count > CurrentExerciseNumber + 1)
+                //Else, if we're not in the last Exercise yet, go to next exercise
+                if (WorkoutService.Service.CurrentExerciseNumber < Workout.ExerciseList.Count - 1)
                 {
-                    CurrentExerciseNumber++;
+                    if (WorkoutService.Service.CurrentExerciseNumber + 1 == Workout.ExerciseList.Count - 1)
+                        ButtonText = "DONE";
+
+                    workoutLog.Exercises.Add(exerciseLog);
+
+                    WorkoutService.Service.CurrentExerciseNumber++;
+                    WorkoutService.Service.CurrentSetNumber = 0;
                     ret = true;
 
+                    // load sets
                     Sets.Clear();
                     foreach (var s in Exercise.Sets)
                         Sets.Add(new SetViewModel(s));
+
+                    SetUpExerciseLog();
                 }
                 else
                 {
-
-                    ret = false; //no more exercises
+                    //no more exercises
+                    //UpdateCurrentExerciseLog(weight, true);
+                    workoutLog.Exercises.Add(exerciseLog);
+                    ret = false;
 
                     SaveDateIfFirstWorkout();
                     SetNextWorkout();
-                    SetNumberOfCompletedWorkouts();
+
+                    LogCompletedWorkout();
                 }
             }
 
             NotifyPropertyChanged("ExerciseName");
             NotifyPropertyChanged("Reps");
+            NotifyPropertyChanged("SetWeight");
             NotifyPropertyChanged("Description");
 
-            Sets[CurrentSet].CurrentSet = true;
+            Sets.ElementAt(WorkoutService.Service.CurrentSetNumber).CurrentSet = true;
             return ret;
+        }
+
+        private void UpdateCurrentExerciseLog(double weight, bool success)
+        {
+            exerciseLog.ExerciseName = ExerciseName;
+            exerciseLog.Sets.Add(new Set
+            {
+                NumberOfReps = Exercise.Sets[WorkoutService.Service.CurrentSetNumber].NumberOfReps,
+                SetType = Exercise.Sets[WorkoutService.Service.CurrentSetNumber].SetType,
+                Unit = Exercise.Sets[WorkoutService.Service.CurrentSetNumber].Unit,
+                Weight = Exercise.Sets[WorkoutService.Service.CurrentSetNumber].Weight
+            });
+
+            exerciseLog.Successful = success;
         }
 
         private static void SetNextWorkout()
@@ -180,14 +259,26 @@ namespace WorkoutLib.ViewModel
                 StorageUtility.WriteSetting(Utilities.PLAN_START_DATE, DateTime.Today.ToShortDateString());
         }
 
-        private static void SetNumberOfCompletedWorkouts()
+        private void LogCompletedWorkout()
         {
-            object o = StorageUtility.ReadSetting(Utilities.NUMBER_COMPLETED_WORKOUTS);
+            object o = StorageUtility.ReadSetting(Utilities.PLAN_LOG);
 
             if (o != null)
-                StorageUtility.WriteSetting(Utilities.NUMBER_COMPLETED_WORKOUTS, ((int)o) + 1);
+            {
+                PlanLog log = o as PlanLog;
+                if (log != null)
+                {
+                    log.Workouts.Add(workoutLog);
+                    StorageUtility.WriteSetting(Utilities.PLAN_LOG, log);
+                }
+            }
             else
-                StorageUtility.WriteSetting(Utilities.NUMBER_COMPLETED_WORKOUTS, 1);
+            {
+                PlanLog log = new PlanLog();
+                log.Workouts = new List<CompletedWorkout>();
+                log.Workouts.Add(workoutLog);
+                StorageUtility.WriteSetting(Utilities.PLAN_LOG, log);
+            }
         }
     }
 }

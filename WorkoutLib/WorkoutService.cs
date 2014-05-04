@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkoutLib.Model;
+using WorkoutLib.Model.Storage;
+using WorkoutLib.ViewModel;
 
 namespace WorkoutLib
 {
@@ -22,7 +24,7 @@ namespace WorkoutLib
             {
                 if (_service == null)
                     _service = new WorkoutService();
-                return _service; 
+                return _service;
             }
         }
         #endregion
@@ -52,9 +54,37 @@ namespace WorkoutLib
         }
 
         /// <summary>
+        /// Gets the current Exercise
+        /// </summary>
+        public Exercise CurrentExercise
+        {
+            get
+            {
+                if (CurrentWorkout == null)
+                    return null;
+
+                return CurrentWorkout.ExerciseList.ElementAt(CurrentExerciseNumber);
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of reps for the current exercise
+        /// </summary>
+        public string CurrentExerciseReps
+        {
+            get
+            {
+                if (CurrentExercise == null || CurrentExercise.Sets == null || CurrentExercise.Sets.Count() <= 0)
+                    return String.Empty;
+
+                return CurrentExercise.Sets[CurrentSetNumber].NumberOfReps.ToString();
+            }
+        }
+
+        /// <summary>
         /// Exercise list
         /// </summary>
-        public IEnumerable<string> Exercises
+        public IEnumerable<string> ExerciseNames
         {
             get
             {
@@ -65,7 +95,7 @@ namespace WorkoutLib
 
                 foreach (var w in WorkoutService.Service.Plan.Workouts)
                 {
-                    foreach (var e in w.StrengthExerciseList)
+                    foreach (var e in w.ExerciseList)
                         if (!names.Contains(e.Name))
                             names.Add(e.Name);
                 }
@@ -74,47 +104,292 @@ namespace WorkoutLib
             }
         }
 
-        private WorkoutService()
+        private int _currentExerciseNumber = 0;
+        /// <summary>
+        /// Current Exercise Number
+        /// </summary>
+        public int CurrentExerciseNumber
         {
-            _plan = null;
+            get { return _currentExerciseNumber; }
+            set { _currentExerciseNumber = value; }
         }
 
+        private int _currentSetNumber = 0;
+        /// <summary>
+        /// Current Set Number
+        /// </summary>
+        public int CurrentSetNumber
+        {
+            get { return _currentSetNumber; }
+            set { _currentSetNumber = value; }
+        }
+
+        private WorkoutService()
+        {
+            Plan = null;
+        }
+
+        /// <summary>
+        /// Loads the plan
+        /// </summary>
+        /// <param name="json">JSON encoded plan</param>
         public void LoadPlan(string json)
         {
-            _plan = DeserializePlan(json);
+            Plan = Utilities.DeserializePlan(json);
 
+            bool canProgress;
+            object progress = StorageUtility.ReadSetting(Utilities.PLANPROGRESS_SETTING);
+            if (progress != null && progress is bool)
+                canProgress = (bool)progress;
+            else canProgress = true; //default
+            
+            // Retrieve ID for today's workout
             object workoutID = StorageUtility.ReadSetting(Utilities.NEXTWORKOUT_SETTING);
             if (workoutID == null)
             {
-                _plan.CurrentWorkout = 0;
+                Plan.CurrentWorkout = 0;
                 StorageUtility.WriteSetting(Utilities.NEXTWORKOUT_SETTING, 0);
             }
             else
-                _plan.CurrentWorkout = (int)workoutID;
+                Plan.CurrentWorkout = (int)workoutID;
+
+            if (Plan.ProgressConfiguration != null && canProgress)
+            {
+                //UpdateSets();
+                //UpdateReps();
+                //UpdateTimes();
+                UpdateWeights();
+            }
         }
 
+        /// <summary>
+        /// Clears the plan
+        /// </summary>
         public void ClearPlan()
         {
             _plan = null;
         }
 
-        public static Plan DeserializePlan(string json)
+        #region Update Plan (increments)
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateWeights()
         {
-            if (String.IsNullOrEmpty(json))
-                return new Plan();
+            foreach (var config in Plan.ProgressConfiguration.Where(p => p.AffectedSetting.Equals(Utilities.PlanProgressAffectedSetting.Weight)))
+            {
+                try
+                {
+                    object o = StorageUtility.ReadSetting(Utilities.PLAN_LOG);
+                    if (o == null || !(o is PlanLog)) continue;
 
-            json = json.Replace("\n", "").Replace("\r", "");
+                    var log = o as PlanLog;
+                    if (log == null || log.Workouts.Count <= 0) continue;
 
-            RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(json);
-            rootObject.Plan.CurrentWorkout = 1;
-            return rootObject.Plan;
+                    // take last X workouts
+                    var lastNWorkouts = log.Workouts.OrderByDescending(w => w.Date)
+                                                    .Where(w => w.Exercises.Any(e => e.ExerciseName.Equals(config.TargetExercise)))
+                                                    .Take(config.ConsecutiveFailCount);
+                    var lastWorkout = lastNWorkouts.First().Exercises.First(e => e.ExerciseName.Equals(config.TargetExercise));
+
+                    if (lastNWorkouts == null || lastNWorkouts.Count() <= 0 || lastWorkout == null) return;
+                    
+                    if (!String.IsNullOrEmpty(config.TargetExercise))
+                    {
+                        // Update current workout's exercise to last workouts setting, so we can work from there
+                        CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise)).Sets = new List<Set>(lastWorkout.Sets);
+
+                        // if last N failed
+                        if (lastNWorkouts.Count(w => w.Exercises.Any(e => e.ExerciseName.Equals(config.TargetExercise) && !e.Successful)).Equals(config.ConsecutiveFailCount))
+                        {
+                            switch (config.ConsecutiveFailProgress)
+                            {
+                                case Utilities.PlanProgressChange.Decrease:
+                                    // find exercise, and foreach set, apply weight modifier
+                                    CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
+                                                               .Sets
+                                                               .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.ConsecutiveFailAmount, config.ConsecutiveFailUnit, -1));
+                                    break;
+                                case Utilities.PlanProgressChange.Maintain:
+                                    // nothing to do, we already loaded last workout's setting
+                                    continue;
+                                case Utilities.PlanProgressChange.Increase:
+                                    // find exercise, and foreach set, apply weight modifier
+                                    CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
+                                                               .Sets
+                                                               .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.ConsecutiveFailAmount, config.ConsecutiveFailUnit, 1));
+                                    break;
+                            }
+                        }
+                        //else, if last failed
+                        else if (!lastNWorkouts.First().Exercises.First(e => e.ExerciseName.Equals(config.TargetExercise)).Successful)
+                        {
+                            switch (config.FailedProgress)
+                            {
+                                case Utilities.PlanProgressChange.Decrease:
+                                    // find exercise, and foreach set, apply weight modifier
+                                    CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
+                                                               .Sets
+                                                               .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.FailedAmount, config.FailedUnit, -1));
+                                    break;
+                                case Utilities.PlanProgressChange.Maintain:
+                                    // nothing to do, we already loaded last workout's setting
+                                    continue;
+                                case Utilities.PlanProgressChange.Increase:
+                                    // find exercise, and foreach set, apply weight modifier
+                                    CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
+                                                               .Sets
+                                                               .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.FailedAmount, config.FailedUnit, 1));
+                                    break;
+                            }
+                        }
+                        //else, all succeeded
+                        else
+                        {
+                            switch (config.Progress)
+                            {
+                                case Utilities.PlanProgressChange.Decrease:
+                                    // find exercise, and foreach set, apply weight modifier
+                                    CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
+                                                               .Sets
+                                                               .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.Amount, config.Unit, -1));
+                                    break;
+                                case Utilities.PlanProgressChange.Maintain:
+                                    // nothing to do, we already loaded last workout's setting
+                                    continue;
+                                case Utilities.PlanProgressChange.Increase:
+                                    // find exercise, and foreach set, apply weight modifier
+                                    CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
+                                                               .Sets
+                                                               .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.Amount, config.Unit, 1));
+                                    break;
+                            }
+                        }
+                    }
+                    // if it applies to all exercises
+                    else
+                    {
+                        //object o = null;
+                        //int progressTimes = -1;
+
+                        //switch (config.TimeFrame)
+                        //{
+                        //    case Utilities.PlanProgressAffectedTime.Day:
+                        //        o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+                        //        if (o != null)
+                        //        {
+                        //            var date = DateTime.Parse(o as string);
+                        //            progressTimes = (int)DateTime.Today.Subtract(date).TotalDays / config.TimeAmount;
+                        //        }
+                        //        break;
+                        //    case Utilities.PlanProgressAffectedTime.Week:
+                        //        o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+                        //        if (o != null)
+                        //        {
+                        //            var date = DateTime.Parse(o as string);
+                        //            progressTimes = ((int)DateTime.Today.Subtract(date).TotalDays / 7) / config.TimeAmount;
+                        //        }
+                        //        break;
+                        //    case Utilities.PlanProgressAffectedTime.Month:
+                        //        o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+                        //        if (o != null)
+                        //        {
+                        //            var date = DateTime.Parse(o as string);
+                        //            progressTimes = ((int)DateTime.Today.Subtract(date).TotalDays / 30) / config.TimeAmount;
+                        //        }
+                        //        break;
+                        //    case Utilities.PlanProgressAffectedTime.Exercise:
+                        //    case Utilities.PlanProgressAffectedTime.Workout:
+                        //        break;
+                        //}
+
+                        //Plan.Workouts.SelectMany(w => w.ExerciseList)
+                        //             .SelectMany(e => e.Sets)
+                        //             .Select(s => s.Weight += 1);
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(config.TargetExercise +" threw an expection");
+                }
+            }
         }
 
-        public static string SerializePlan(Plan plan)
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateTimes()
         {
-            var rootoject = new RootObject() { Plan = plan };
-            string json = JsonConvert.SerializeObject(rootoject);
-            return json;
+            foreach (var config in Plan.ProgressConfiguration)
+            {
+                if (config.AffectedSetting.Equals(Utilities.PlanProgressAffectedSetting.Time))
+                {
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateReps()
+        {
+            foreach (var config in Plan.ProgressConfiguration)
+            {
+                if (config.AffectedSetting.Equals(Utilities.PlanProgressAffectedSetting.Reps))
+                {
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void UpdateSets()
+        {
+            foreach (var config in Plan.ProgressConfiguration)
+            {
+                if (config.AffectedSetting.Equals(Utilities.PlanProgressAffectedSetting.Set))
+                {
+
+                }
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// Returns the weight to be added to previous workout's weight. (can be negative, resulting in a subtraction)
+        /// </summary>
+        /// <param name="set">Source set</param>
+        /// <param name="amount">amount defined by config</param>
+        /// <param name="unit">unit in which amount is described</param>
+        /// <param name="modifier">1/-1 whether we want to add or subtract</param>
+        /// <returns>value to be added</returns>11
+        private double UpdateWeightFromGivenWorkout(Set set, double amount, Utilities.PlanProgressUnit unit, int modifier)
+        {
+            switch (unit)
+            {
+                case Utilities.PlanProgressUnit.Kg:
+                    if (set.Unit.Equals(Utilities.Unit.Metric))
+                        return amount * modifier;
+                    else
+                        return Utilities.KgToPounds(amount) * modifier;
+
+                case Utilities.PlanProgressUnit.Lbs:
+                    if (set.Unit.Equals(Utilities.Unit.Metric))
+                        return Utilities.PoundsToKg(amount) * modifier;
+                    else
+                        return amount * modifier;
+
+                case Utilities.PlanProgressUnit.Percent:
+                    return set.Weight * amount * modifier;
+
+                case Utilities.PlanProgressUnit.Minutes:
+                case Utilities.PlanProgressUnit.Reps:
+                case Utilities.PlanProgressUnit.Seconds:
+                case Utilities.PlanProgressUnit.Sets:
+                default:
+                    return 0;
+            }
         }
     }
 }

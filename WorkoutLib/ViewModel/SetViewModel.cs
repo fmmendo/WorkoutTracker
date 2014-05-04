@@ -52,7 +52,7 @@ namespace WorkoutLib.ViewModel
 
         private bool _currentSet;
         /// <summary>
-        /// Inidcates if this is the current set for the exercise
+        /// Indicates if this is the current set for the exercise
         /// </summary>
         public bool CurrentSet
         {
@@ -78,70 +78,70 @@ namespace WorkoutLib.ViewModel
         public SetViewModel(Set s, double weight = -1)
         {
             _set = s;
-
-            _weight = RecalculateWeightIfRequired(weight);
+            _weight = weight;
+            //_weight = RecalculateWeightIfRequired(weight);
         }
 
-        private static double RecalculateWeightIfRequired(double weight)
-        {
-            if (WorkoutService.Service.Plan.PlanProgressConfiguration != null && WorkoutService.Service.Plan.PlanProgressConfiguration.AffectedValue == Utilities.PlanProgressAffectedValue.Weight)
-            {
-                int progressTimes = -1;
-                object o = null;
-                switch (WorkoutService.Service.Plan.PlanProgressConfiguration.TimeFrame)
-                {
+        //private static double RecalculateWeightIfRequired(double weight)
+        //{
+        //    if (WorkoutService.Service.Plan.ProgressConfiguration != null && WorkoutService.Service.Plan.ProgressConfiguration.AffectedValue == Utilities.PlanProgressAffectedValue.Weight)
+        //    {
+        //        int progressTimes = -1;
+        //        object o = null;
+        //        switch (WorkoutService.Service.Plan.ProgressConfiguration.TimeFrame)
+        //        {
 
-                    case Utilities.PlanProgressAffectedTime.Day:
-                        o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
-                        if (o != null)
-                        {
-                            var date = DateTime.Parse(o as string);
-                            progressTimes = (int)DateTime.Today.Subtract(date).TotalDays / WorkoutService.Service.Plan.PlanProgressConfiguration.TimeAmount;
-                        }
-                        break;
-                    case Utilities.PlanProgressAffectedTime.Week:
-                        o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
-                        if (o != null)
-                        {
-                            var date = DateTime.Parse(o as string);
-                            progressTimes = ((int)DateTime.Today.Subtract(date).TotalDays / 7) / WorkoutService.Service.Plan.PlanProgressConfiguration.TimeAmount;
-                        }
-                        break;
-                    case Utilities.PlanProgressAffectedTime.Month:
-                        o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
-                        if (o != null)
-                        {
-                            var date = DateTime.Parse(o as string);
-                            progressTimes = ((int)DateTime.Today.Subtract(date).TotalDays / 30) / WorkoutService.Service.Plan.PlanProgressConfiguration.TimeAmount;
-                        }
-                        break;
-                    case Utilities.PlanProgressAffectedTime.Workout:
-                        break;
-                }
+        //            case Utilities.PlanProgressAffectedTime.Day:
+        //                o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+        //                if (o != null)
+        //                {
+        //                    var date = DateTime.Parse(o as string);
+        //                    progressTimes = (int)DateTime.Today.Subtract(date).TotalDays / WorkoutService.Service.Plan.ProgressConfiguration.TimeAmount;
+        //                }
+        //                break;
+        //            case Utilities.PlanProgressAffectedTime.Week:
+        //                o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+        //                if (o != null)
+        //                {
+        //                    var date = DateTime.Parse(o as string);
+        //                    progressTimes = ((int)DateTime.Today.Subtract(date).TotalDays / 7) / WorkoutService.Service.Plan.ProgressConfiguration.TimeAmount;
+        //                }
+        //                break;
+        //            case Utilities.PlanProgressAffectedTime.Month:
+        //                o = StorageUtility.ReadSetting(Utilities.PLAN_START_DATE);
+        //                if (o != null)
+        //                {
+        //                    var date = DateTime.Parse(o as string);
+        //                    progressTimes = ((int)DateTime.Today.Subtract(date).TotalDays / 30) / WorkoutService.Service.Plan.ProgressConfiguration.TimeAmount;
+        //                }
+        //                break;
+        //            case Utilities.PlanProgressAffectedTime.Workout:
+        //                break;
+        //        }
 
-                for (int i = 0; i < progressTimes; i++)
-                {
-                    if (WorkoutService.Service.Plan.PlanProgressConfiguration.Unit == Utilities.PlanProgressUnit.Percent)
-                    {
-                        weight *= WorkoutService.Service.Plan.PlanProgressConfiguration.Amount / 100;
-                    }
-                    else if (WorkoutService.Service.Plan.PlanProgressConfiguration.Unit == Utilities.PlanProgressUnit.Kg)
-                    {
-                        if (UserSettings.Settings.Unit == Utilities.Unit.Metric)
-                            weight += WorkoutService.Service.Plan.PlanProgressConfiguration.Amount;
-                        else
-                            weight += Utilities.KgToPounds(WorkoutService.Service.Plan.PlanProgressConfiguration.Amount);
-                    }
-                    else if (WorkoutService.Service.Plan.PlanProgressConfiguration.Unit == Utilities.PlanProgressUnit.Lbs)
-                    {
-                        if (UserSettings.Settings.Unit == Utilities.Unit.Imperial)
-                            weight += WorkoutService.Service.Plan.PlanProgressConfiguration.Amount;
-                        else
-                            weight += Utilities.PoundsToKg(WorkoutService.Service.Plan.PlanProgressConfiguration.Amount);
-                    }
-                }
-            }
-            return weight;
-        }
+        //        for (int i = 0; i < progressTimes; i++)
+        //        {
+        //            if (WorkoutService.Service.Plan.ProgressConfiguration.Unit == Utilities.PlanProgressUnit.Percent)
+        //            {
+        //                weight *= WorkoutService.Service.Plan.ProgressConfiguration.Amount / 100;
+        //            }
+        //            else if (WorkoutService.Service.Plan.ProgressConfiguration.Unit == Utilities.PlanProgressUnit.Kg)
+        //            {
+        //                if (UserSettings.Settings.Unit == Utilities.Unit.Metric)
+        //                    weight += WorkoutService.Service.Plan.ProgressConfiguration.Amount;
+        //                else
+        //                    weight += Utilities.KgToPounds(WorkoutService.Service.Plan.ProgressConfiguration.Amount);
+        //            }
+        //            else if (WorkoutService.Service.Plan.ProgressConfiguration.Unit == Utilities.PlanProgressUnit.Lbs)
+        //            {
+        //                if (UserSettings.Settings.Unit == Utilities.Unit.Imperial)
+        //                    weight += WorkoutService.Service.Plan.ProgressConfiguration.Amount;
+        //                else
+        //                    weight += Utilities.PoundsToKg(WorkoutService.Service.Plan.ProgressConfiguration.Amount);
+        //            }
+        //        }
+        //    }
+        //    return weight;
+        //}
     }
 }

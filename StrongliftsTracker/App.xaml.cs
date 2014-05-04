@@ -43,7 +43,7 @@ namespace StrongliftsTracker
         /// </summary>
         public App()
         {
-            WorkoutLib.WorkoutService.Service.LoadPlan(Utilities.LoadJsonFromFile("Assets\\StrongLifts.json"));
+            WorkoutLib.WorkoutService.Service.LoadPlan(Utilities.LoadFileAsString("Assets\\StrongLifts.json"));
 
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;

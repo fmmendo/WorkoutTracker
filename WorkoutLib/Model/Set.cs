@@ -19,7 +19,7 @@ namespace WorkoutLib.Model
         /// <summary>
         /// Weight to use for each rep
         /// </summary>
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         /// <summary>
         /// Unit in which the current weight is presented

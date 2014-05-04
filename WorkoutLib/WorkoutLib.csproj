@@ -84,12 +84,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Model\CardioExercise.cs" />
-    <Compile Include="Model\ExerciseBase.cs" />
-    <Compile Include="Model\ExerciseValues.cs" />
+    <Compile Include="Model\Exercise.cs" />
+    <Compile Include="Model\Storage\CompletedExercise.cs" />
+    <Compile Include="Model\Storage\CompletedWorkout.cs" />
+    <Compile Include="Model\Storage\ExerciseValues.cs" />
     <Compile Include="Model\FAQ.cs" />
     <Compile Include="Model\Plan.cs" />
-    <Compile Include="Model\PlanProgressConfiguration.cs" />
+    <Compile Include="Model\ProgressConfiguration.cs" />
     <Compile Include="Model\Set.cs" />
+    <Compile Include="Model\Storage\PlanLog.cs" />
     <Compile Include="Model\StrengthExercise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StorageUtility.cs" />

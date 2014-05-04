@@ -58,9 +58,14 @@
             <TextBlock Grid.Row="2" HorizontalAlignment="Center" Style="{StaticResource TextHeaderStyle}">reps</TextBlock>
             <TextBlock Grid.Row="3" Style="{StaticResource TextBlockPageTitleStyle}" HorizontalAlignment="Center" Text="{Binding SetWeight}"></TextBlock>
             <TextBlock Grid.Row="4" Style="{StaticResource PhoneTextNormalStyle}" HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-            <Button Grid.Row="6" Style="{StaticResource ButtonStyle}" Click="Button_Click" Content="{Binding ButtonText}" ></Button>
-
-            <!--<my:RestTimerControl Name="_restTimer" Grid.RowSpan="5" ></my:RestTimerControl>-->
+            <Grid Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource ButtonStyle}" Command="{Binding FailedCommand}" Content="Failed" ></Button>
+                <Button Grid.Column="1" Style="{StaticResource ButtonStyle}" Click="Button_Click" Content="{Binding ButtonText}" ></Button>
+            </Grid>
         </Grid>
 
     </Grid>

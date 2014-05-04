@@ -57,11 +57,10 @@ namespace WorkoutLib.ViewModel
             if (workoutID != null)
             {
                 if (Plan.CurrentWorkout != (int)workoutID)
-                    WorkoutService.Service.LoadPlan(Utilities.LoadJsonFromFile("Assets\\StrongLifts.json"));
+                    WorkoutService.Service.LoadPlan(Utilities.LoadFileAsString("Assets\\StrongLifts.json"));
             }
-            
 
-            foreach (var e in WorkoutService.Service.CurrentWorkout.StrengthExerciseList.OrderBy(o => o.Order))
+            foreach (var e in WorkoutService.Service.CurrentWorkout.ExerciseList.OrderBy(o => o.Order))
             {
                 ExerciseList.Add(new ExerciseViewModel(e));
             }

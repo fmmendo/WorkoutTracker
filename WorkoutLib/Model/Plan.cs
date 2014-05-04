@@ -14,7 +14,7 @@ namespace WorkoutLib.Model
         /// <summary>
         /// Settings for how to progress along this plan
         /// </summary>
-        public PlanProgressConfiguration PlanProgressConfiguration { get; set; }
+        public IEnumerable<ProgressConfiguration> ProgressConfiguration { get; set; }
 
         /// <summary>
         /// Identifier for this workout

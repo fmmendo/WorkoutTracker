@@ -182,7 +182,7 @@ namespace WorkoutLib.ViewModel
             else SelectedPercentage = "50"; //default
 
             if (progress != null && progress is bool)
-                PlanProgress = (bool)percentage;
+                PlanProgress = (bool)progress;
             else PlanProgress = true; //default
 
             ResetPlanCommand = new ButtonCommand(ExecuteResetPlan, CanExecuteResetPlan);

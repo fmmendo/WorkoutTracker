@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WorkoutLib.ViewModel;
+using Microsoft.Phone.Tasks;
 
 namespace StrongliftsTracker.Views
 {
@@ -21,6 +22,16 @@ namespace StrongliftsTracker.Views
             DataContext = _vm;
 
             InitializeComponent();
+        }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as HyperlinkButton;
+            if (button == null) return;
+
+            var wbt = new WebBrowserTask();
+            wbt.Uri = new Uri("http://stronglifts.com/5x5/", UriKind.Absolute);
+            wbt.Show();
         }
     }
 }
