@@ -1,0 +1,373 @@
+﻿{
+    "Plan": {
+		"ProgressConfiguration" : [
+			{
+				"Progress": 0,
+				"AffectedSetting":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Squat",
+                "TargetExercise":"Squat",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Bench Press",
+                "TargetExercise":"Bench Press",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Barbell Row",
+                "TargetExercise":"Barbell Row",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":5,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Overhead Press",
+                "TargetExercise":"Overhead Press",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			},
+			{
+				"Progress": 0,
+				"AffectedValue":0,
+				"Amount":10,
+				"Unit":0,
+				"TimeAmount":1,
+				"TimeFrame":4,
+                "ExerciseName":"Dead Lift",
+                "TargetExercise":"Dead Lift",
+				"FailedProgress": 2,
+				"FailedAffectedValue":0,
+				"FailedAmount":0,
+				"FailedUnit":2,
+                "ConsecutiveFailCount":3,
+				"ConsecutiveFailProgress": 1,
+				"ConsecutiveFailAffectedValue":0,
+				"ConsecutiveFailAmount":0.10,
+				"ConsecutiveFailUnit":2
+			}
+		],
+        "Name": "STRONGLIFTS 5x5",
+        "Description": "StrongLifts 5×5 consists of two full body-workouts:\nWorkout A: Squat, Bench Press, Barbell Row\nWorkout B: Squat, Overhead Press, Deadlift\n\nYou train three times a week, alternating workout A and B, and resting at least one day between two workouts. You never train two days in a row because your body needs days off to get stronger.",
+        "Workouts": [
+            {
+			    "Id": 1,
+                "Name": "Workout A",
+                "Description": "The 1st Workout in the Stronglifts 5x5 Program consists of Squats, Bench Press and Barbell Row, for 5 sets of 5 reps each.",
+                "ExerciseList": [
+                    {
+                        "Name": "Squat",
+                        "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
+                        "Order": 1,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Bench Press",
+                        "Description": "Lie on an upright support bench or a bench inside a Power Rack. Unrack the weight & lower it to your chest. Press it back up until your arms are locked.",
+                        "Order": 2,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Barbell Row",
+                        "Description": "Row each rep from the floor. Grip the bar like you Bench Press and pull with your elbows. Row against your chest while keeping your upper-back parallel",
+                        "Order": 3,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":65,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":65,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":65,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":65,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":65,
+                                "Unit":0,
+                                "SetType": 0
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+			    "Id": 2,
+                "Name": "Workout B",
+                "Description": "The 2st Workout in the Stronglifts 5x5 Program consists of Squats and Overhead Press for 5 sets of 5 reps each, and Deadlift for 1 sets of 5 reps due to the deadlift being a lot more taxing on the body.",
+                "ExerciseList": [
+                    {
+                        "Name": "Squat",
+                        "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
+                        "Order": 1,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Overhead Press",
+                        "Description": "Press the bar from your front shoulders overhead until your elbows are locked.",
+                        "Order": 2,
+						"RestTime": 60,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            },
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":45,
+                                "Unit":0,
+                                "SetType": 0
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Dead Lift",
+                        "Description": "Stand with the bar above the center of your feet, grab the bar overhand and bend through your knees until your shins hit the bar. Lift your chest and pull.",
+                        "Order": 3,
+						"RestTime": 120,
+                        "Sets": [
+                            {
+                                "NumberOfReps": 5,
+                                "Weight":95,
+                                "Unit":0,
+                                "SetType": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "FAQ": [
+            {
+                "Question":"What does 5×5 mean?",
+                "Answer":"5×5 means five sets of five reps with the same weight. So Squat 5×5 100kg is five sets of five reps using 100kg on all five sets. Do not jump cold into this weight but warmup with lighter sets first."
+            },
+            {
+                "Question":"What does 1×5 mean?",
+                "Answer":"1×5 means one set of five reps. It doesn’t mean five sets of one rep. So Deadlift 1×5 120kg is one set where you Deadlift 120kg for five reps."
+            },
+            {
+                "Question":"Why only 1×5 Deadlifts, not 5×5?",
+                "Answer":"This is because Deadlifts are much more taxing on your body. You can get away Deadlifting for 5×5 on StrongLifts 5×5 when the weights are still light. But it will beat you up once the weights get heavier."
+            },
+            {
+                "Question":"How long should I rest between sets?",
+                "Answer":"Enough to get five reps on your next set. Stronglifts recommends: 1min30 if getting five reps on your last set was easy, 3mins if you struggled to get five reps on your last set, 5mins if you missed a rep on your last set."
+            },
+            {
+                "Question":"How fast should I lift? What’s the tempo?",
+                "Answer":"There’s no tempo with StrongLifts 5×5, just control the bar on the way up and down. Do not lift slow thinking you’ll build more muscle that way. Lifting fast on the way up is key to lifting a lot of weight and get stronger. So go fast but controlled on the way up once you’re confident about your form."
+            },
+            {
+                "Question":"How should I warm up?",
+                "Answer":"Start with two sets of five reps with the empty bar on Squats, Bench and Overhead Press. Then add 10-20kg (25-45lb) and do 2-3 reps. Keep adding 10-20kg, doing 2-3 reps on each set, until you’ve reached your 5×5 weight. Empty bar warmup sets don’t work for Barbell Row and Deadlift, but since you’re doing compound exercises, your whole body is warmed up already by the time you have to Barbell Row or Deadlift. So you can start heavier here."
+            },
+            {
+                "Question":"How should I breathe?",
+                "Answer":"You can use a technique called the “valsalva maneuver”. Big breath, hold it, lift, then exhale. By taking a big breath you’ll increase the pressure in your abdomen. This in turn reduces the risk of lower back injuries because your “core” is tighter. "
+            },
+            {
+                "Question":"Can I change the order of exercises?",
+                "Answer":"No. The exercise order isn’t random. It’s set this way because that’s how it works best. If you missed reps in any of your five sets, you do not increase the weight by 2.5kg/5lb next workout for that exercise."
+            },
+            {
+                "Question":"What if I fail to get 5 reps?",
+                "Answer":"If you haven’t already done five sets on this exercise, wait five minutes for your central nervous system to recover. Then do your next set with the exact same weight and try to get five reps."
+            },
+            {
+                "Question":"What if I keep failing at the same weight?",
+                "Answer":"If you fail to get 5×5 on an exercise three workouts in a row, lower the weight by 10% for that exercise only. This is called a deload. "
+            },
+            {
+                "Question":"How long should I do StrongLifts 5×5?",
+                "Answer":"As long as you’re getting stronger. StrongLifts 5×5 is NOT a 12 week program. 12 weeks is just the start. It’s a test-drive for your body to prove you this works to get stronger. You’ll know when it’s time to switch to a more advanced training program when you’re no longer able to add 2.5kg/5lb each workout."
+            },
+            {
+                "Question":"Does StrongLifts 5×5 work for women?",
+                "Answer":"Yes, though you might want so start at a lower weight and increments might need to be lower (1kg/2lbs)."
+            }
+        ]
+    }
+}

@@ -40,6 +40,10 @@
         <GradientStop Color="#FFFFEE00" Offset="0"></GradientStop>
         <GradientStop Color="#FFAA8800" Offset="1"></GradientStop>
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientGreen">
+        <GradientStop Color="#FF00BB00" Offset="0"></GradientStop>
+        <GradientStop Color="#FF008800" Offset="1"></GradientStop>
+    </LinearGradientBrush>
 
     <!--Background-->
     <LinearGradientBrush x:Key="AppBackground1" EndPoint="3,3" MappingMode="Absolute" SpreadMethod="Repeat" StartPoint="0,0">

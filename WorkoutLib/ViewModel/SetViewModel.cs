@@ -28,11 +28,25 @@ namespace WorkoutLib.ViewModel
             get
             {
                 if (_weight > 0)
+                {
                     return _weight.ToString("#.##");
-                else if (_set.Weight > 0)
-                    return _set.Weight.ToString("#.##");
+                }
                 else
-                    return String.Empty;
+                {
+                    if (_set.Weight > 0)
+                    {
+
+                        if (_set.Unit.Equals(UserSettings.Settings.Unit))
+                            return _set.Weight.ToString("#.##");
+                        else if (_set.Unit.Equals(Utilities.Unit.Imperial) && (UserSettings.Settings.Unit.Equals(Utilities.Unit.Metric)))
+                            return Utilities.PoundsToKg(_set.Weight).ToString("#.##");
+                        else if (_set.Unit.Equals(Utilities.Unit.Metric) && (UserSettings.Settings.Unit.Equals(Utilities.Unit.Imperial)))
+                            return Utilities.KgToPounds(_set.Weight).ToString("#.##");
+                    }
+                    else
+                        return String.Empty;
+                }
+                return String.Empty;
             }
         }
 

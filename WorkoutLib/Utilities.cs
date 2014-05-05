@@ -42,7 +42,8 @@ namespace WorkoutLib
             ForcedReps,
             NegativeReps,
             CheatingReps,
-            PartialReps
+            PartialReps,
+            WarmUp
         }
 
         /// <summary>

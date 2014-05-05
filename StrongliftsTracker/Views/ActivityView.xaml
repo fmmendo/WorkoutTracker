@@ -47,8 +47,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding NumberOfReps}" Foreground="{Binding SetForegroundColour}" Style="{StaticResource TextHeaderStyle}">
-                            </TextBlock>
+                            <TextBlock Text="{Binding NumberOfReps}" Margin="12,0" Foreground="{Binding SetForegroundColour}" Style="{StaticResource TextHeaderStyle}" />
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
