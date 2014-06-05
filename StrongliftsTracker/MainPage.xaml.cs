@@ -46,6 +46,11 @@ namespace StrongliftsTracker
             NavigationService.Navigate(new Uri("/Views/AboutView.xaml", UriKind.Relative));
         }
 
+        private void Stats_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/StatsView.xaml", UriKind.Relative));
+        }
+
         private void BeginWorkout_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Views/WorkoutView.xaml", UriKind.Relative));

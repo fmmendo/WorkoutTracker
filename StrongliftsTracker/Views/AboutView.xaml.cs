@@ -33,5 +33,16 @@ namespace StrongliftsTracker.Views
             wbt.Uri = new Uri("http://stronglifts.com/5x5/", UriKind.Absolute);
             wbt.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.Subject = "Feedback: Stronglifts Tracker";
+            emailComposeTask.Body = "";
+            emailComposeTask.To = "feedback@fmendo.com ";
+
+            emailComposeTask.Show();
+        }
     }
 }

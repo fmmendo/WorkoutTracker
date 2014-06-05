@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WorkoutLib.Model;
 using WorkoutLib.Model.Storage;
-using WorkoutLib.ViewModel;
 
 namespace WorkoutLib
 {
@@ -142,7 +137,7 @@ namespace WorkoutLib
             if (progress != null && progress is bool)
                 canProgress = (bool)progress;
             else canProgress = true; //default
-            
+
             // Retrieve ID for today's workout
             object workoutID = StorageUtility.ReadSetting(Utilities.NEXTWORKOUT_SETTING);
             if (workoutID == null)
@@ -193,11 +188,21 @@ namespace WorkoutLib
                     var lastWorkout = lastNWorkouts.First().Exercises.First(e => e.ExerciseName.Equals(config.TargetExercise));
 
                     if (lastNWorkouts == null || lastNWorkouts.Count() <= 0 || lastWorkout == null) return;
-                    
+
                     if (!String.IsNullOrEmpty(config.TargetExercise))
                     {
                         // Update current workout's exercise to last workouts setting, so we can work from there
-                        CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise)).Sets = new List<Set>(lastWorkout.Sets);
+                        for (int i = 0; i < lastWorkout.Sets.Count; i++)
+                        {
+                            CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise)).Sets[i] = new Set()
+                            {
+                                NumberOfReps = lastWorkout.Sets[i].NumberOfReps,
+                                SetType = lastWorkout.Sets[i].SetType,
+                                Unit = lastWorkout.Sets[i].Unit,
+                                Weight = lastWorkout.Sets[i].Weight
+                            };
+                        }
+                        //CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise)).Sets = new List<Set>(lastWorkout.Sets);
 
                         // if last N failed
                         if (lastNWorkouts.Count(w => w.Exercises.Any(e => e.ExerciseName.Equals(config.TargetExercise) && !e.Successful)).Equals(config.ConsecutiveFailCount))
@@ -205,7 +210,7 @@ namespace WorkoutLib
                             switch (config.ConsecutiveFailProgress)
                             {
                                 case Utilities.PlanProgressChange.Decrease:
-                                    // find exercise, and foreach set, apply weight modifier
+                                    // find exercise, and for every set, apply weight modifier
                                     CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
                                                                .Sets
                                                                .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.ConsecutiveFailAmount, config.ConsecutiveFailUnit, -1));
@@ -214,7 +219,7 @@ namespace WorkoutLib
                                     // nothing to do, we already loaded last workout's setting
                                     continue;
                                 case Utilities.PlanProgressChange.Increase:
-                                    // find exercise, and foreach set, apply weight modifier
+                                    // find exercise, and for every set, apply weight modifier
                                     CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
                                                                .Sets
                                                                .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.ConsecutiveFailAmount, config.ConsecutiveFailUnit, 1));
@@ -227,7 +232,7 @@ namespace WorkoutLib
                             switch (config.FailedProgress)
                             {
                                 case Utilities.PlanProgressChange.Decrease:
-                                    // find exercise, and foreach set, apply weight modifier
+                                    // find exercise, and for every set, apply weight modifier
                                     CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
                                                                .Sets
                                                                .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.FailedAmount, config.FailedUnit, -1));
@@ -236,7 +241,7 @@ namespace WorkoutLib
                                     // nothing to do, we already loaded last workout's setting
                                     continue;
                                 case Utilities.PlanProgressChange.Increase:
-                                    // find exercise, and foreach set, apply weight modifier
+                                    // find exercise, and for every set, apply weight modifier
                                     CurrentWorkout.ExerciseList.FirstOrDefault(e => e.Name.Equals(config.TargetExercise))
                                                                .Sets
                                                                .ForEach(s => s.Weight += UpdateWeightFromGivenWorkout(s, config.FailedAmount, config.FailedUnit, 1));
@@ -310,7 +315,7 @@ namespace WorkoutLib
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine(config.TargetExercise +" threw an expection");
+                    Console.WriteLine(config.TargetExercise + " threw an expection");
                 }
             }
         }

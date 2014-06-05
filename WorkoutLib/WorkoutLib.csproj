@@ -83,7 +83,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Model\CardioExercise.cs" />
     <Compile Include="Model\Exercise.cs" />
     <Compile Include="Model\Storage\CompletedExercise.cs" />
     <Compile Include="Model\Storage\CompletedWorkout.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\ActivityViewModel.cs" />
     <Compile Include="ViewModel\SetViewModel.cs" />
+    <Compile Include="ViewModel\StatsViewModel.cs" />
     <Compile Include="ViewModel\Util\ButtonCommand.cs" />
     <Compile Include="ViewModel\ExerciseViewModel.cs" />
     <Compile Include="ViewModel\MeasurementsViewModel.cs" />

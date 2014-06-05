@@ -1,0 +1,56 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="StrongliftsTracker.Views.StatsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Chart" 
+    xmlns:chartEngine="clr-namespace:Telerik.Charting;assembly=Telerik.Windows.Controls.Chart"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackground1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="{Binding AppName}" Style="{StaticResource TextBlockNormalStyle}"/>
+            <TextBlock Text="stats" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+        <chart:RadCartesianChart Margin="12" Grid.Row="1" x:Name="chart">
+            <chart:RadCartesianChart.Grid>
+                <chart:CartesianChartGrid MajorXLineDashArray="1, 5" MajorYLineDashArray="1, 5" MajorLinesVisibility="XY">
+                    <chart:CartesianChartGrid.MajorYLineStyle>
+                        <Style TargetType="Line">
+                            <Setter Property="Stroke" Value="Gray"/>
+                        </Style>
+                    </chart:CartesianChartGrid.MajorYLineStyle>
+                    <chart:CartesianChartGrid.MajorXLineStyle>
+                        <Style TargetType="Line">
+                            <Setter Property="Stroke" Value="Gray"/>
+                        </Style>
+                    </chart:CartesianChartGrid.MajorXLineStyle>
+                </chart:CartesianChartGrid>
+            </chart:RadCartesianChart.Grid>
+            <chart:RadCartesianChart.HorizontalAxis>
+                <chart:CategoricalAxis LineStroke="{StaticResource PhoneDisabledBrush}" LineThickness="2"/>
+            </chart:RadCartesianChart.HorizontalAxis>
+            <chart:RadCartesianChart.VerticalAxis>
+                <chart:LinearAxis LineStroke="{StaticResource PhoneDisabledBrush}" LineThickness="2"/>
+            </chart:RadCartesianChart.VerticalAxis>
+        </chart:RadCartesianChart>
+        <StackPanel Margin="12" Grid.Row="3" x:Name="legend"></StackPanel>
+    </Grid>
+
+</phone:PhoneApplicationPage>
