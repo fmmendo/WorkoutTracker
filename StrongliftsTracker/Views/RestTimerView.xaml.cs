@@ -25,12 +25,21 @@ namespace StrongliftsTracker.Controls
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _vm.StartTimer();
+            if (e.NavigationMode == NavigationMode.New && e.IsNavigationInitiator == true)
+                _vm.StartTimer();
+            else if (e.NavigationMode == NavigationMode.Back && e.IsNavigationInitiator == false)
+            { }
+            else return;
+
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            _vm.StopTimer();
+            if (e.NavigationMode == NavigationMode.New && e.IsNavigationInitiator == true)
+                _vm.StopTimer();
+            else if (e.NavigationMode == NavigationMode.Back && e.IsNavigationInitiator == false)
+            { }
+            else return;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
