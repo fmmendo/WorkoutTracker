@@ -20,7 +20,7 @@ namespace StrongliftsTracker
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
 
-            Loaded += MainPage_Loaded;
+            //Loaded += MainPage_Loaded;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -31,10 +31,10 @@ namespace StrongliftsTracker
             base.OnNavigatedFrom(e);
         }
 
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            adRotatorControl.Invalidate();
-        }
+        //void MainPage_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    adRotatorControl.Invalidate();
+        //}
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
