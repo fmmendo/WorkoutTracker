@@ -17,26 +17,24 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Background="{StaticResource PhoneAccentBrush}" Margin="12" HorizontalAlignment="Stretch">
-            <TextBlock Text="{Binding Name}" Style="{StaticResource TextHeaderStyle}" Margin="12,6,0,6" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap"></TextBlock>
+        <Border Grid.Row="0" Background="{StaticResource PhoneAccentBrush}" Margin="12,12,12,8" HorizontalAlignment="Stretch">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource TextHeaderStyle}" Margin="12,6,12,6" Foreground="White" HorizontalAlignment="Stretch" TextWrapping="Wrap"/>
         </Border>
         <ListBox Grid.Row="1" ItemsSource="{Binding Sets}" Style="{StaticResource ListboxItemsStyle}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="5,0,0,0">
-                        <Grid>
+                        <Grid Margin="10,5,10,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding Path=NumberOfReps}"></TextBlock>
                             <TextBlock Grid.Column="1" Text=" reps     "></TextBlock>
                             <TextBlock Grid.Column="2" Text="{Binding Path=Weight}"></TextBlock>
                             <TextBlock Grid.Column="3" Text="{Binding Path=DataContext.Unit, ElementName=LayoutRoot}"></TextBlock>
                         </Grid>
-                    </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

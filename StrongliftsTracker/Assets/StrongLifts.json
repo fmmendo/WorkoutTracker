@@ -103,7 +103,7 @@
             {
 			    "Id": 1,
                 "Name": "Workout A",
-                "Description": "The 1st Workout in the Stronglifts 5x5 Program consists of Squats, Bench Press and Barbell Row, for 5 sets of 5 reps each.",
+                "Description": "The 1st Workout in the Stronglifts 5x5 Program consists of Squats, Bench Press and Barbell Row, for 5 sets of 5 reps each. To configure your starting weight, please use the One Rep Max tool in the app.",
                 "ExerciseList": [
                     {
                         "Name": "Squat",
@@ -224,7 +224,7 @@
             {
 			    "Id": 2,
                 "Name": "Workout B",
-                "Description": "The 2st Workout in the Stronglifts 5x5 Program consists of Squats and Overhead Press for 5 sets of 5 reps each, and Deadlift for 1 sets of 5 reps due to the deadlift being a lot more taxing on the body.",
+                "Description": "The 2st Workout in the Stronglifts 5x5 Program consists of Squats and Overhead Press for 5 sets of 5 reps each, and Deadlift for 1 sets of 5 reps. To configure your starting weight, please use the One Rep Max tool in the app.",
                 "ExerciseList": [
                     {
                         "Name": "Squat",

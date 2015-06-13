@@ -24,8 +24,8 @@
         <phone:Pivot Grid.Row="1">
             <phone:PivotItem Header="about">
                 <ScrollViewer>
-                <StackPanel>
-                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,18">This is an unnoficial app that allows you to track you progress in the Stronglifts 5x5 Workout. More information can be found at:</TextBlock>
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,18">This is an unnoficial app that allows you to track you progress in the Stronglifts 5x5 Workout. More information can be found at:</TextBlock>
                         <HyperlinkButton Margin="0,0,0,18" Click="HyperlinkButton_Click">http://stronglifts.com/5x5/</HyperlinkButton>
                         <Button Style="{StaticResource ButtonStyle}" Margin="0,0,0,24" Click="Button_Click">Send Feedback</Button>
                         <TextBlock TextWrapping="Wrap" Margin="0,0,0,18" Style="{StaticResource TextHeaderStyle}">Summary of Stronglifts 5×5</TextBlock>
@@ -34,34 +34,24 @@
                         <TextBlock TextWrapping="Wrap" Margin="0,0,0,18">• Workout B: Squat, Overhead Press, Deadlift</TextBlock>
                         <TextBlock TextWrapping="Wrap" Margin="0,0,0,18">You train three times a week, alternating workout A and B, and resting at least one day between two workouts. You never train two days in a row because your body needs days off to get stronger.</TextBlock>
                         <TextBlock TextWrapping="Wrap" Margin="0,0,0,18">Don’t start too heavy or you’ll get sore legs and feel like skipping workouts in week one. Start light to let your body get used to Squatting three times a week. Remember you’re adding 2.5kg/5lb per workout or 30kg/60lb per month on Squats. The weight will increase fast. No need to start too heavy.</TextBlock>
-                </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
             </phone:PivotItem>
 
             <phone:PivotItem Header="f.a.q.">
 
                 <Grid x:Name="FAQPanel" Grid.Row="1" Margin="12,0,12,0">
-                        <ListBox ItemsSource="{Binding FaqList}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource TextHeaderStyle}" Margin="0,12,12,0" VerticalAlignment="Top">Q:</TextBlock>
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource TextHeaderStyle}" Margin="0,0,12,0" VerticalAlignment="Top">A:</TextBlock>
+                    <ListBox ItemsSource="{Binding FaqList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Question}" Style="{StaticResource TextHeaderStyle}" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Answer}" Style="{StaticResource TextBlockNormalStyle}" Margin="0,0,0,12" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                                </StackPanel>
 
-                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Question}" Style="{StaticResource TextHeaderStyle}" VerticalAlignment="Top" TextWrapping="Wrap"/>
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Answer}" Style="{StaticResource TextBlockNormalStyle}" VerticalAlignment="Top" TextWrapping="Wrap"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </phone:PivotItem>
         </phone:Pivot>

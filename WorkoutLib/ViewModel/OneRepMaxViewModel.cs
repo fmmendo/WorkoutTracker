@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using WorkoutLib.Model;
 using WorkoutLib.Model.Storage;
 
 namespace WorkoutLib.ViewModel
@@ -135,6 +131,7 @@ namespace WorkoutLib.ViewModel
                 int index = Exercise1RMs.IndexOf(item);
                 Exercise1RMs[index].OneRepMaxValue = OneRepMaxValue;
                 Exercise1RMs[index].Percentages = Percentages;
+                Exercise1RMs[index].Unit = UserSettings.Settings.Unit;
             }
             // If not, add new
             else
@@ -144,6 +141,7 @@ namespace WorkoutLib.ViewModel
 
             ShowMessage("One Rep Max value saved. \nYou can review all your 1RM values by swiping left.");
 
+            WorkoutService.Service.RefreshPlan();
             NotifyPropertyChanged("ExerciseValues");
         }
 

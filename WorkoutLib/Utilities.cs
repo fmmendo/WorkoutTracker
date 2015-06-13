@@ -193,7 +193,7 @@ namespace WorkoutLib
         /// <returns>Weight in Kilograms</returns>
         public static double PoundsToKg(double pounds)
         {
-            return pounds * PoundKGFraction;
+            return RoundToNearestKg(pounds * PoundKGFraction);
         }
         
         /// <summary>
@@ -203,7 +203,27 @@ namespace WorkoutLib
         /// <returns>Weight in Pounds</returns>
         public static double KgToPounds(double kg)
         {
-            return kg / PoundKGFraction;
+            return RoundToNearestPound(kg / PoundKGFraction);
+        }
+
+        /// <summary>
+        /// Rounds given weight to nearest 2.5kg plate
+        /// </summary>
+        /// <param name="kg"></param>
+        /// <returns></returns>
+        public static double RoundToNearestKg(double kg)
+        {
+            return (2.5 - kg % 2.5) + kg;
+        }
+
+        /// <summary>
+        /// Rounds given weight to nearest 5lbs plate
+        /// </summary>
+        /// <param name="pound"></param>
+        /// <returns></returns>
+        public static double RoundToNearestPound(double pound)
+        {
+            return (5 - pound % 5) + pound;
         }
     }
 }

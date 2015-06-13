@@ -86,7 +86,7 @@
     <!--Listbox-->
     <Style x:Key="ListboxItemsStyle" TargetType="ListBox">
         <Setter Property="Background" Value="{StaticResource TransparentGray}" />
-        <Setter Property="Margin" Value="24,0,24,12" />
+        <Setter Property="Margin" Value="12,0,12,12" />
     </Style>
     
 </ResourceDictionary>
