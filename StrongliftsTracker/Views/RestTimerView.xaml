@@ -11,7 +11,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     Background="Black"
     Visibility="{Binding TimerVisibility}"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0">
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0" Orientation="Portrait">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackground1}">

@@ -181,12 +181,12 @@ namespace WorkoutLib
             try
             {
                 object o = StorageUtility.ReadSetting(Utilities.PLAN_LOG);
-                if (o == null || !(o is PlanLog))
+                //if (o == null || !(o is PlanLog))
                 {
+                        object orm = StorageUtility.ReadSetting(Utilities.ONEREPMAXVALUES);
                     foreach (var e in Plan.Workouts.ElementAt(Plan.CurrentWorkout).ExerciseList)
                     {
                         //double w = -1; // if w<0 we ignore it and use whatever came with the json
-                        object orm = StorageUtility.ReadSetting(Utilities.ONEREPMAXVALUES);
                         if (orm != null)
                         {
                             var Exercise1RMs = (ObservableCollection<ExerciseValues>)orm;
@@ -198,17 +198,18 @@ namespace WorkoutLib
                                 int index = Exercise1RMs.IndexOf(item);
 
                                 // calculate lift weight based on stored %RM
-                                var w = Exercise1RMs[index].OneRepMaxValue > 0 ? Exercise1RMs[index].OneRepMaxValue * (Int32.Parse(UserSettings.Settings.SelectedPercentage ?? "85") / (double)100) : -1;
+                                var w = Exercise1RMs[index].OneRepMaxValue > 0 ? Exercise1RMs[index].OneRepMaxValue * (int.Parse(UserSettings.Settings.SelectedPercentage ?? "85") / (double)100) : -1;
 
                                 e.Sets.ForEach(s => { s.Weight = w; s.Unit = item.Unit; });
                             }
                         }
                     }
-                    return;
+                    //return;
                 }
 
                 var log = o as PlanLog;
-                if (log == null || log.Workouts.Count <= 0) return;
+                if (log == null || log.Workouts.Count <= 0)
+                    return;
 
                 foreach (var config in Plan.ProgressConfiguration.Where(p => p.AffectedSetting.Equals(Utilities.PlanProgressAffectedSetting.Weight)))
                 {
@@ -218,9 +219,13 @@ namespace WorkoutLib
                         var lastNWorkouts = log.Workouts.OrderByDescending(w => w.Date)
                                                         .Where(w => w.Exercises.Any(e => e.ExerciseName.Equals(config.TargetExercise)))
                                                         .Take(config.ConsecutiveFailCount);
-                        var lastWorkout = lastNWorkouts.First().Exercises.First(e => e.ExerciseName.Equals(config.TargetExercise));
 
-                        if (lastNWorkouts == null || lastNWorkouts.Count() <= 0 || lastWorkout == null) return;
+                        CompletedExercise lastWorkout = null;
+                        if (lastNWorkouts.Any())
+                            lastWorkout = lastNWorkouts.FirstOrDefault().Exercises.First(e => e.ExerciseName.Equals(config.TargetExercise));
+
+                        if (!(lastNWorkouts != null && lastNWorkouts.Any() && lastWorkout != null))
+                            continue;
 
                         if (!String.IsNullOrEmpty(config.TargetExercise))
                         {
@@ -348,7 +353,7 @@ namespace WorkoutLib
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 //Console.WriteLine(config.TargetExercise + " threw an expection");
             }
@@ -409,7 +414,7 @@ namespace WorkoutLib
             {
                 case Utilities.PlanProgressUnit.Kg:
                     if (set.Unit.Equals(Utilities.Unit.Metric))
-                        return amount * modifier;
+                        return Utilities.RoundToNearestKg(amount * modifier);
                     else
                         return Utilities.KgToPounds(amount) * modifier;
 
@@ -417,10 +422,13 @@ namespace WorkoutLib
                     if (set.Unit.Equals(Utilities.Unit.Metric))
                         return Utilities.PoundsToKg(amount) * modifier;
                     else
-                        return amount * modifier;
+                        return Utilities.RoundToNearestPound(amount * modifier);
 
                 case Utilities.PlanProgressUnit.Percent:
-                    return set.Weight * amount * modifier;
+                    if (set.Unit.Equals(Utilities.Unit.Metric))
+                        return Utilities.RoundToNearestKg(set.Weight * amount * modifier);
+                    else
+                        return Utilities.RoundToNearestPound(set.Weight * amount * modifier);
 
                 case Utilities.PlanProgressUnit.Minutes:
                 case Utilities.PlanProgressUnit.Reps:

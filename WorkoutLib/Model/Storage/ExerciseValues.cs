@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-using WorkoutLib.ViewModel;
-
 namespace WorkoutLib.Model.Storage
 {
     public class ExerciseValues

@@ -109,7 +109,7 @@
                         "Name": "Squat",
                         "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
                         "Order": 1,
-						"RestTime": 60,
+						"RestTime": 90,
                         "Sets": [
                             {
                                 "NumberOfReps": 5,
@@ -147,7 +147,7 @@
                         "Name": "Bench Press",
                         "Description": "Lie on an upright support bench or a bench inside a Power Rack. Unrack the weight & lower it to your chest. Press it back up until your arms are locked.",
                         "Order": 2,
-						"RestTime": 60,
+						"RestTime": 90,
                         "Sets": [
                             {
                                 "NumberOfReps": 5,
@@ -185,7 +185,7 @@
                         "Name": "Barbell Row",
                         "Description": "Row each rep from the floor. Grip the bar like you Bench Press and pull with your elbows. Row against your chest while keeping your upper-back parallel",
                         "Order": 3,
-						"RestTime": 60,
+						"RestTime": 90,
                         "Sets": [
                             {
                                 "NumberOfReps": 5,
@@ -230,7 +230,7 @@
                         "Name": "Squat",
                         "Description": "Bend through your knees with the bar on your back until your hips come lower than parallel. Once your hip joint is lower than your knee joint you Squat up again.",
                         "Order": 1,
-						"RestTime": 60,
+						"RestTime": 90,
                         "Sets": [
                             {
                                 "NumberOfReps": 5,
@@ -268,7 +268,7 @@
                         "Name": "Overhead Press",
                         "Description": "Press the bar from your front shoulders overhead until your elbows are locked.",
                         "Order": 2,
-						"RestTime": 60,
+						"RestTime": 90,
                         "Sets": [
                             {
                                 "NumberOfReps": 5,
@@ -306,7 +306,7 @@
                         "Name": "Dead Lift",
                         "Description": "Stand with the bar above the center of your feet, grab the bar overhand and bend through your knees until your shins hit the bar. Lift your chest and pull.",
                         "Order": 3,
-						"RestTime": 120,
+						"RestTime": 90,
                         "Sets": [
                             {
                                 "NumberOfReps": 5,
