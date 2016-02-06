@@ -13,7 +13,7 @@
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0">
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0" Orientation="Portrait">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackground1}">
@@ -78,7 +78,7 @@
                     <StackPanel>
                         <Image Source="Assets\1rm.png" Height="100" Margin="12"/>
                         <TextBlock Foreground="White" HorizontalAlignment="Center">
-							<Run Text="One Rep Max"/>
+							<Run Text="Setup Weight"/>
                         </TextBlock>
                     </StackPanel>
                 </Button>

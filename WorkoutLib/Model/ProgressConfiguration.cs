@@ -76,7 +76,7 @@ namespace WorkoutLib.Model
 
         #region When the user fails for X consecutive workouts
         /// <summary>
-        /// Number of times the user failed
+        /// Number of times the user needs to file for this setting to trigger
         /// </summary>
         public int ConsecutiveFailCount { get; set; }
 

@@ -213,7 +213,9 @@ namespace WorkoutLib
         /// <returns></returns>
         public static double RoundToNearestKg(double kg)
         {
-            return (2.5 - kg % 2.5) + kg;
+            return kg % 2.5 == 0 
+                ? kg 
+                : (2.5 - kg % 2.5) + kg;
         }
 
         /// <summary>
@@ -223,7 +225,9 @@ namespace WorkoutLib
         /// <returns></returns>
         public static double RoundToNearestPound(double pound)
         {
-            return (5 - pound % 5) + pound;
+            return pound % 5 == 0 
+                ? pound 
+                : (5 - pound % 5) + pound;
         }
     }
 }

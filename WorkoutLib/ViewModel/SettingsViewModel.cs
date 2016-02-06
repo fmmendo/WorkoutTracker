@@ -179,7 +179,7 @@ namespace WorkoutLib.ViewModel
 
             if (percentage != null && percentage is string)
                 SelectedPercentage = (string)percentage;
-            else SelectedPercentage = "50"; //default
+            else SelectedPercentage = "85"; //default
 
             if (progress != null && progress is bool)
                 PlanProgress = (bool)progress;

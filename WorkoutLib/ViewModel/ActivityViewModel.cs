@@ -126,30 +126,50 @@ namespace WorkoutLib.ViewModel
             Sets.Clear();
             foreach (var s in Exercise.Sets)
             {
-                double w = -1; // if w<0 we ignore it and use whatever came with the json
-                object o = StorageUtility.ReadSetting(Utilities.ONEREPMAXVALUES);
-                if (o != null)
-                {
-                    var Exercise1RMs = (ObservableCollection<ExerciseValues>)o;
-
-                    // try to find an entry for the current exercise
-                    var item = Exercise1RMs.FirstOrDefault(ex => ex.Name.Equals(ExerciseName));
-                    if (item != null)
-                    {
-                        int index = Exercise1RMs.IndexOf(item);
-
-                        // calculate lift weight based on stored %RM
-                        w = Exercise1RMs[index].OneRepMaxValue > 0 ? Exercise1RMs[index].OneRepMaxValue * (Int32.Parse(UserSettings.Settings.SelectedPercentage ?? "85") / (double)100) : -1;
-                    }
-                }
-
-                Sets.Add(new SetViewModel(s, w));
+                Sets.Add(new SetViewModel(s)); ;//AddSet(s);
             }
 
             Sets[WorkoutService.Service.CurrentSetNumber].CurrentSet = true;
 
             SetUpWorkoutLog();
         }
+
+        //private void AddSet(Set s)
+        //{
+        //    double w = -1; // if w<0 we ignore it and use whatever came with the json
+        //    object o = StorageUtility.ReadSetting(Utilities.ONEREPMAXVALUES);
+        //    if (o != null)
+        //    {
+        //        var Exercise1RMs = (ObservableCollection<ExerciseValues>)o;
+
+        //        // try to find an entry for the current exercise
+        //        var item = Exercise1RMs.FirstOrDefault(ex => ex.Name.Equals(ExerciseName));
+        //        if (item != null)
+        //        {
+        //            int index = Exercise1RMs.IndexOf(item);
+
+        //            // calculate lift weight based on stored %RM
+        //            w = Exercise1RMs[index].OneRepMaxValue > 0
+        //                ? Exercise1RMs[index].OneRepMaxValue * (Int32.Parse(UserSettings.Settings.SelectedPercentage ?? "85") / (double)100)
+        //                : -1;
+
+        //            if (Exercise1RMs[index].OneRepMaxValue > 0)
+        //            {
+        //                double val = Exercise1RMs[index].OneRepMaxValue * (Int32.Parse(UserSettings.Settings.SelectedPercentage ?? "85") / (double)100);
+        //                if (Exercise1RMs[index].Unit == UserSettings.Settings.Unit)
+        //                    w = Utilities.RoundToNearestKg(val);
+        //                else {
+        //                    if (Exercise1RMs[index].Unit == Utilities.Unit.Imperial)
+        //                        w = Utilities.PoundsToKg(val);
+        //                    else
+        //                        w = Utilities.KgToPounds(val);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    Sets.Add(new SetViewModel(s, w));
+        //}
 
         private void SetUpWorkoutLog()
         {
@@ -202,6 +222,7 @@ namespace WorkoutLib.ViewModel
                     Sets.Clear();
                     foreach (var s in Exercise.Sets)
                         Sets.Add(new SetViewModel(s));
+                    //AddSet(s);
 
                     SetUpExerciseLog();
                 }

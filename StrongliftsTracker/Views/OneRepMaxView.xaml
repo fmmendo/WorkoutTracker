@@ -19,40 +19,52 @@
         <!--Pivot Control-->
         <phone:Pivot Title="{Binding AppName}" Foreground="White">
             <!--Pivot item one-->
-            <phone:PivotItem Header="one rep max">
+            <phone:PivotItem Header="setup weight">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" ></ColumnDefinition>
-                        <ColumnDefinition Width="Auto" ></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <toolkit:PhoneTextBox InputScope="Number" Grid.Column="0" Hint="Weight" Text="{Binding Weight, Mode=TwoWay}"></toolkit:PhoneTextBox>
-                    <TextBlock Grid.Column="1" Style="{StaticResource TextHeaderStyle}"  VerticalAlignment="Center">x</TextBlock>
-                    <toolkit:PhoneTextBox InputScope="Number" Grid.Column="2" Hint="Reps" Text="{Binding Reps, Mode=TwoWay}"></toolkit:PhoneTextBox>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <toolkit:PhoneTextBox Grid.Row="1" InputScope="Number" Grid.Column="0" Hint="Weight" Text="{Binding Weight, Mode=TwoWay}"></toolkit:PhoneTextBox>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextHeaderStyle}" VerticalAlignment="Bottom" Margin="0,0,0,18" HorizontalAlignment="Center">
+                            <Run Text="{Binding UnitInUse}"/>
+                            <Run Text="  x"/>
+                        </TextBlock>
+                        <toolkit:PhoneTextBox IsEnabled="{Binding DataContext.Ignore1RM, ElementName=spSave, Converter={StaticResource BooleanReverseConverter}}"
+                            Grid.Row="1" InputScope="Number" Grid.Column="2" Hint="Reps" Text="{Binding Reps, Mode=TwoWay}"></toolkit:PhoneTextBox>
 
-                    <TextBlock Grid.Row="1" Style="{StaticResource TextHeaderStyle}" Grid.ColumnSpan="3" HorizontalAlignment="Center" Text="{Binding OneRepMax}"></TextBlock>
-                    <ListBox Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" ItemsSource="{Binding Percentages}" IsHitTestVisible="False">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding}"  Style="{StaticResource TextBlockNormalStyle}"  HorizontalAlignment="Center"></TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        <TextBlock Visibility="{Binding DataContext.Ignore1RM, ElementName=spSave, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=reverse}" Grid.Row="2" Style="{StaticResource TextHeaderStyle}" Grid.ColumnSpan="3" HorizontalAlignment="Center" Text="{Binding OneRepMax}"></TextBlock>
+                        <ListBox Visibility="{Binding DataContext.Ignore1RM, ElementName=spSave, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=reverse}" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" ItemsSource="{Binding Percentages}" IsHitTestVisible="False">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding}" Style="{StaticResource TextBlockSubtleStyle}"  HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <CheckBox IsChecked="{Binding DataContext.Ignore1RM, ElementName=spSave, Mode=TwoWay}" Grid.ColumnSpan="3" Grid.Row="4" Content="Don't calculate 1RM"/>
+                    </Grid>
 
-                    <TextBlock Style="{StaticResource TextBlockNormalStyle}" Grid.Row="3" Grid.ColumnSpan="3" Margin="12,0">Enter exercise name to save:</TextBlock>
-                    <toolkit:ListPicker ItemsSource="{Binding Exercises}" SelectedItem="{Binding ExerciseName, Mode=TwoWay}" Grid.Row="4" Grid.ColumnSpan="3"></toolkit:ListPicker>
-                    <Button Grid.Row="5" Command="{Binding SaveCommand}" IsEnabled="{Binding CanExecuteSaveCommand}" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" BorderBrush="Transparent">Save</Button>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" x:Name="spSave">
+                        <TextBlock Style="{StaticResource TextBlockNormalStyle}" Grid.Row="3" Grid.ColumnSpan="3" Margin="12,0">Enter exercise name to save:</TextBlock>
+                        <toolkit:ListPicker ItemsSource="{Binding Exercises}" SelectedItem="{Binding ExerciseName, Mode=TwoWay}" Grid.Row="4" Grid.ColumnSpan="3"></toolkit:ListPicker>
+                        <Button Grid.Row="5" Command="{Binding SaveCommand}" IsEnabled="{Binding CanExecuteSaveCommand}" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" BorderBrush="Transparent">Save</Button>
+                    </StackPanel>
                 </Grid>
             </phone:PivotItem>
 
@@ -86,7 +98,7 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                    <TextBlock MinWidth="180" Text="{Binding}" Style="{StaticResource TextBlockNormalStyle}"></TextBlock>
+                                                    <TextBlock MinWidth="180" Text="{Binding}" Style="{StaticResource TextBlockNormalStyle}"/>
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>

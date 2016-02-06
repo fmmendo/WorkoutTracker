@@ -23,7 +23,6 @@ namespace WorkoutLib.Model.Storage
         /// </summary>
         public int Duration { get; set; }
 
-
         /// <summary>
         /// Settings (speed:x, inclination:y, resistance:z, etc...)
         /// </summary>
