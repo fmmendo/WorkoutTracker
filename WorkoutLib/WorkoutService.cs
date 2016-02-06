@@ -426,9 +426,9 @@ namespace WorkoutLib
 
                 case Utilities.PlanProgressUnit.Percent:
                     if (set.Unit.Equals(Utilities.Unit.Metric))
-                        return Utilities.RoundToNearestKg(set.Weight * amount * modifier);
+                        return Utilities.RoundToNearestKg(set.Weight * amount) * modifier;
                     else
-                        return Utilities.RoundToNearestPound(set.Weight * amount * modifier);
+                        return Utilities.RoundToNearestPound(set.Weight * amount) * modifier;
 
                 case Utilities.PlanProgressUnit.Minutes:
                 case Utilities.PlanProgressUnit.Reps:

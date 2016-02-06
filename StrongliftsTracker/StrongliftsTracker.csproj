@@ -104,6 +104,8 @@
     <Compile Include="Controls\ExerciseControl.xaml.cs">
       <DependentUpon>ExerciseControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanReverseConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Views\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>

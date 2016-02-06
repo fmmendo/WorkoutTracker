@@ -40,12 +40,35 @@ namespace WorkoutLib.ViewModel
             }
         }
 
+        private bool _ignore1RM;
+        /// <summary>
+        /// Reps for the calculation
+        /// </summary>
+        public bool Ignore1RM
+        {
+            get { return _ignore1RM; }
+            set
+            {
+                _ignore1RM = value;
+                NotifyPropertyChanged();
+                GetOneRepMaxValue();
+            }
+        }
+
         /// <summary>
         /// Exercise list
         /// </summary>
         public IEnumerable<string> Exercises
         {
             get { return WorkoutService.Service.ExerciseNames; }
+        }
+
+        /// <summary>
+        /// Exercise list
+        /// </summary>
+        public string UnitInUse
+        {
+            get { return UserSettings.Settings.Unit.Equals(Utilities.Unit.Imperial) ? "lbs" : "kg"; }
         }
 
         private string _exerciseName;
@@ -166,33 +189,43 @@ namespace WorkoutLib.ViewModel
         {
             double w;
             int r;
-            if (Double.TryParse(Weight, out w) && Int32.TryParse(Reps, out r))
-            {
-                if (w > 0 && r > 0)
+            //if (Double.TryParse(Weight, out w) && Int32.TryParse(Reps, out r))
+            Double.TryParse(Weight, out w);
+            Int32.TryParse(Reps, out r);
+
+            //{
+                if (w > 0 && r > 0 && !_ignore1RM)
                 {
                     _oneRepMaxValue = (w * (1 + ((float)r / 30)));
 
                     _percentages.Clear();
                     int[] array = { 95, 90, 85, 80, 75, 70, 65, 60, 55, 50 };
                     foreach (int val in array)
-                        _percentages.Add(String.Format("{0}% - {1} {2}",
-                            val,
+                        _percentages.Add(String.Format("{0}% - {1} {2}", val,
                             (((float)val / 100) * _oneRepMaxValue).ToString("#.##"),
                             UserSettings.Settings.Unit.Equals(Utilities.Unit.Imperial) ? "lbs" : "kg"));
-
-
+                }
+                else if (_ignore1RM)
+                {
+                    _oneRepMaxValue = w / int.Parse(UserSettings.Settings.SelectedPercentage ?? "85");
+                    
+                    _percentages.Clear();
+                    int[] array = { 95, 90, 85, 80, 75, 70, 65, 60, 55, 50 };
+                    foreach (int val in array)
+                        _percentages.Add(String.Format("{0}% - {1} {2}", val, (w * ((double)val/100)).ToString("#.##"),
+                            UserSettings.Settings.Unit.Equals(Utilities.Unit.Imperial) ? "lbs" : "kg"));
                 }
                 else
                 {
                     _oneRepMaxValue = -1;
                     _percentages.Clear();
                 }
-            }
-            else
-            {
-                _oneRepMaxValue = -1;
-                _percentages.Clear();
-            }
+            //}
+            //else
+            //{
+            //    _oneRepMaxValue = -1;
+            //    _percentages.Clear();
+            //}
 
             NotifyPropertyChanged("OneRepMax");
             NotifyPropertyChanged("Percentages");
