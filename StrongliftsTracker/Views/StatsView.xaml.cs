@@ -1,14 +1,9 @@
-﻿using System;
+﻿using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using WorkoutLib.ViewModel;
 using System.Windows.Media;
+using Telerik.Windows.Controls;
+using WorkoutLib.ViewModel;
 
 namespace StrongliftsTracker.Views
 {
@@ -35,25 +30,25 @@ namespace StrongliftsTracker.Views
             
             _vm = new StatsViewModel();
             DataContext = _vm;
-            
-            //legend.Children.Clear();
-            //int count = 0;
-            //foreach (var item in _vm.ExerciseProgression)
-            //{
-            //    var series = new LineSeries();
-            //    series.ItemsSource = item.Value;
-            //    series.CategoryBinding = new PropertyNameDataPointBinding("Date");
-            //    series.ValueBinding = new PropertyNameDataPointBinding("Weight");
-            //    series.Stroke = new SolidColorBrush(Colours[count]);
-            //    this.chart.Series.Add(series);
 
-            //    TextBlock tb = new TextBlock();
-            //    tb.Text = item.Key;
-            //    tb.Foreground= new SolidColorBrush(Colours[count]);
-            //    legend.Children.Add(tb);
+            legend.Children.Clear();
+            int count = 0;
+            foreach (var item in _vm.ExerciseProgression)
+            {
+                var series = new LineSeries();
+                series.ItemsSource = item.Value;
+                series.CategoryBinding = new PropertyNameDataPointBinding("Date");
+                series.ValueBinding = new PropertyNameDataPointBinding("Weight");
+                series.Stroke = new SolidColorBrush(Colours[count]);
+                this.chart.Series.Add(series);
 
-            //    count++;
-            //}
+                TextBlock tb = new TextBlock();
+                tb.Text = item.Key;
+                tb.Foreground = new SolidColorBrush(Colours[count]);
+                legend.Children.Add(tb);
+
+                count++;
+            }
         }
     }
 }

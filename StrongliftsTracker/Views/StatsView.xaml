@@ -6,6 +6,8 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chart="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Chart" 
+    xmlns:chartEngine="clr-namespace:Telerik.Charting;assembly=Telerik.Windows.Controls.Chart"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -26,7 +28,7 @@
             <TextBlock Text="{Binding AppName}" Style="{StaticResource TextBlockNormalStyle}"/>
             <TextBlock Text="stats" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-        <!--<chart:RadCartesianChart Margin="12" Grid.Row="1" x:Name="chart">
+        <chart:RadCartesianChart Margin="12" Grid.Row="1" x:Name="chart">
             <chart:RadCartesianChart.Grid>
                 <chart:CartesianChartGrid MajorXLineDashArray="1, 5" MajorYLineDashArray="1, 5" MajorLinesVisibility="XY">
                     <chart:CartesianChartGrid.MajorYLineStyle>
@@ -47,7 +49,7 @@
             <chart:RadCartesianChart.VerticalAxis>
                 <chart:LinearAxis LineStroke="{StaticResource PhoneDisabledBrush}" LineThickness="2"/>
             </chart:RadCartesianChart.VerticalAxis>
-        </chart:RadCartesianChart>-->
+        </chart:RadCartesianChart>
         <StackPanel Margin="12" Grid.Row="3" x:Name="legend"></StackPanel>
     </Grid>
 
