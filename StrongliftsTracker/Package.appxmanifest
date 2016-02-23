@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="x8a5e6ceay9425y4810y9427y75ef2382cb4cx" Executable="AGHost.exe" EntryPoint="MainPage.xaml">
-      <m3:VisualElements DisplayName="StrongliftsTracker" Square150x150Logo="Assets\SquareTile150x150.png" Square44x44Logo="Assets\Logo.png" Description="StrongliftsTracker" ForegroundText="light" BackgroundColor="#464646">
+      <m3:VisualElements DisplayName="StrongliftsTracker" Square150x150Logo="Assets\SquareTile150x150.png" Square44x44Logo="Assets\Logo.png" Description="Workout tracking app for Stronglifts 5x5" ForegroundText="light" BackgroundColor="#464646">
         <m3:DefaultTile Square71x71Logo="Assets\SquareTile71x71.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\Splashscreen.png" />

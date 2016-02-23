@@ -276,9 +276,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AdDuplex.WindowsPhone, Version=2.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AdDuplexWP8.2.8.1.0\lib\wp8\AdDuplex.WindowsPhone.dll</HintPath>
+    <Reference Include="AdDuplex.WindowsPhone, Version=9.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdDuplexWP8.9.0.0.8\lib\wp8\AdDuplex.WindowsPhone.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AdRotator">
       <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\AdRotator.dll</HintPath>
@@ -315,7 +315,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.SL80.6.2.40501.1\lib\wp8\Microsoft.Advertising.Mobile.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
@@ -324,10 +323,6 @@
     <Reference Include="RateMyApp">
       <HintPath>..\packages\RateMyApp.1.1.0\lib\sl4-wp71\RateMyApp.dll</HintPath>
     </Reference>
-    <Reference Include="SOMAWP8">
-      <HintPath>..\packages\AdRotatorWP.1.0.3\lib\wp8\SOMAWP8.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Telerik.Windows.Controls.Chart">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for Windows Phone 8 Q2 2015\Binaries\WindowsPhone\Telerik.Windows.Controls.Chart.dll</HintPath>
     </Reference>
